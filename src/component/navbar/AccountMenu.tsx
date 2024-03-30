@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Logout from '@mui/icons-material/Logout';
-import BusinessIcon from '@mui/icons-material/Business';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 
 export default function AccountMenu(): React.JSX.Element {
@@ -53,7 +53,7 @@ export default function AccountMenu(): React.JSX.Element {
       >
         <MenuItem onClick={handleAddress}>
           <ListItemIcon>
-            <BusinessIcon fontSize="small" />
+            <LockOpenIcon fontSize="small" />
             <Typography variant='body2' sx={{ marginX: '4px' }}>Change Password</Typography>
           </ListItemIcon>
         </MenuItem>
