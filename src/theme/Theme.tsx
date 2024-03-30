@@ -7,7 +7,6 @@ import createCache from '@emotion/cache';
 // import sahel from '../Fonts/Sahel-FD.woff2';
 import App from '../App';
 
-
 const cacheDataTable = createCache({
   key: "mui-datatables",
   prepend: true
@@ -46,7 +45,7 @@ export default function Theme() {
         mode,
 
         primary: {
-          main: '#8BB867',
+          main: '#00A693', //'#48d1cc', //'#8BB867',
           light: '#8ed557',
           contrastText: '#fff',
         },

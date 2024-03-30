@@ -12,6 +12,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import { MenuData } from '../../assets/data/Data';
+import NavBar from '../navbar/NavBar';
 
 const drawerWidth = 240;
 
@@ -126,13 +127,14 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
   return (
     <div className='flex'>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
+      <AppBar position="fixed" open={open} >
+        <Toolbar sx={{ display: 'flex' }}>
           <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
             sx={{ ...(open && { display: 'none' }), }}
           >
             <MenuIcon />
           </IconButton>
+          <NavBar />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} >
@@ -150,8 +152,8 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
             MenuData?.map(menuItem => (
               <ListItem key={menuItem.id} disablePadding sx={{ display: 'block', mb: 2.5 }}>
                 <Tooltip title={open ? '' : menuItem.title}>
-                  <ListItemButton onClick={() => selectCategory(menuItem.id, menuItem.href)} sx={{ height: 30, justifyContent: open ? 'initial' : 'center', px: 2.5, mb: 1, color:listSelected === menuItem.id ? theme.palette.primary.main : '' }}>
-                    <ListItemIcon sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color:listSelected === menuItem.id ? theme.palette.primary.main : ''}} >
+                  <ListItemButton onClick={() => selectCategory(menuItem.id, menuItem.href)} sx={{ height: 30, justifyContent: open ? 'initial' : 'center', px: 2.5, mb: 1, color: listSelected === menuItem.id ? theme.palette.primary.main : '' }}>
+                    <ListItemIcon sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color: listSelected === menuItem.id ? theme.palette.primary.main : '' }} >
                       {menuItem.icon}
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} primary={<Typography variant='body1' >{menuItem.title}</Typography>} />

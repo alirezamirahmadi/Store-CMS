@@ -1,7 +1,8 @@
-import { useRoutes } from "react-router-dom"
+import { useRoutes } from "react-router-dom";
 
-import SideBar from "./component/sidebar/SideBar"
-import routes from "./route/Route"
+import SideBar from "./component/sidebar/SideBar";
+import routes from "./route/Route";
+import '../dist/tailwind/output.css';
 
 function App() {
   

@@ -8,5 +8,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Theme />
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
