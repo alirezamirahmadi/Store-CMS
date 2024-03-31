@@ -1,8 +1,8 @@
-import ProductModify from "../component/product/productModify/ProductModify";
+import Products from "../pages/products/Products"
 
 const routes = [
     {path:'/', element:<div />},
-    {path:'/products', element:<ProductModify />},
+    {path:'/products', element:<Products />},
 ]
 
 export default routes

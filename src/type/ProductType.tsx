@@ -1,10 +1,20 @@
 
-type ProductSectionType = {
-  id:string,
-  title:string
+type ProductCategoryType = {
+  id: string,
+  title: string
+}
+
+type ProductType = {
+  id: string,
+  category: ProductCategoryType,
+  title: string,
+  image: string,
+  price: number,
+  stock: number,
 }
 
 
+
 export type {
-  ProductSectionType
+  ProductCategoryType, ProductType
 }

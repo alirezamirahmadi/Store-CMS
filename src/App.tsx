@@ -1,6 +1,6 @@
 import { useRoutes } from "react-router-dom";
 
-import SideBar from "./component/sidebar/SideBar";
+import SideBar from "./components/sidebar/SideBar";
 import routes from "./route/Route";
 import '../dist/tailwind/output.css';
 

@@ -6,7 +6,7 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import DiscountIcon from '@mui/icons-material/Discount';
 
 import type { MenuType } from "../../type/HomeType";
-import type { ProductSectionType } from '../../type/ProductType';
+import type { ProductCategoryType, ProductType } from '../../type/ProductType';
 
 const MenuData: MenuType[] = [
   { id: 1, title: 'Home', icon: <MeetingRoomIcon fontSize='medium' color='inherit' />, href: '/home' },
@@ -18,10 +18,19 @@ const MenuData: MenuType[] = [
 
 ]
 
-let ProductSection: ProductSectionType[] = [
+const ProductCategoryData: ProductCategoryType[] = [
   { id: '1', title: 'Phone' }, { id: '2', title: 'Laptop' }, { id: '3', title: 'Monitor' }
 ]
 
+const ProductData: ProductType[] = [
+  { id: '1', category: { id: '1', title: 'Phone' }, title: 'Redmi 9', image: 'logo192.png', price: 120, stock: 5 },
+  { id: '2', category: { id: '1', title: 'Phone' }, title: 'Redmi Note 10', image: 'logo192.png', price: 160, stock: 12 },
+  { id: '3', category: { id: '2', title: 'Laptop' }, title: 'Asus A10', image: 'logo192.png', price: 320, stock: 52 },
+  { id: '4', category: { id: '2', title: 'Laptop' }, title: 'hp RE4', image: 'logo192.png', price: 400, stock: 15 },
+  { id: '5', category: { id: '3', title: 'Monitor' }, title: 'Samsung 22', image: 'logo192.png', price: 170, stock: 67 },
+  { id: '6', category: { id: '3', title: 'Monitor' }, title: 'LG 20', image: 'logo192.png', price: 130, stock: 34 },
+]
+
 export {
-  MenuData, ProductSection
+  MenuData, ProductCategoryData, ProductData
 }
