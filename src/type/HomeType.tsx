@@ -13,9 +13,14 @@ type TextBoxType = {
   multiLine?: boolean
 }
 
-
+type ModalType = {
+  title?: string,
+  message?: string,
+  buttons: { id: string, title: string, variant?: 'text' | 'contained' | 'outlined', onClick: () => void }[]
+  children?: React.JSX.Element
+}
 
 
 export type {
-  MenuType, TextBoxType
+  MenuType, TextBoxType, ModalType
 }

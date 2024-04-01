@@ -15,7 +15,7 @@ const columns: ColumnType[] = [
   { field: { title: 'stock' }, label: 'Stock' },
   {
     field: { title: 'modify' }, label: 'Modify', kind: 'component', options: {
-      component: (rowData) => (<ModifyButton rowData={rowData} />)
+      component: (value, onChange, rowData) => (<ModifyButton value={value} onChange={() => onChange && onChange} rowData={rowData} />)
     }
   },
 ]
