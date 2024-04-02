@@ -7,6 +7,7 @@ import DiscountIcon from '@mui/icons-material/Discount';
 
 import type { MenuType } from "../../type/HomeType";
 import type { ProductCategoryType, ProductType } from '../../type/ProductType';
+import { UserType } from '../../type/UserType';
 
 const MenuData: MenuType[] = [
   { id: 1, title: 'Home', icon: <MeetingRoomIcon fontSize='medium' color='inherit' />, href: '/home' },
@@ -31,6 +32,13 @@ const ProductData: ProductType[] = [
   { id: '6', category: { id: '3', title: 'Monitor' }, title: 'LG 20', image: 'logo192.png', price: 130, stock: 34 },
 ]
 
+const UserData: UserType[] = [
+  { id: '1', firstName: 'Anna', lastName: 'Mirahmadi', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
+  { id: '2', firstName: 'Lena', lastName: 'Mirahmadi', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
+  { id: '3', firstName: 'Fakhri', lastName: 'Khorasani', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
+  { id: '4', firstName: 'Alireza', lastName: 'Mirahmadi', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
+]
+
 export {
-  MenuData, ProductCategoryData, ProductData
+  MenuData, ProductCategoryData, ProductData, UserData
 }

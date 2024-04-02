@@ -26,10 +26,7 @@ export default function Products(): React.JSX.Element {
   return (
     <>
       <ProductModify />
-      <div className="container mx-auto">
-
-        <Divider sx={{ my: '20px' }} />
-      </div>
+      <Divider sx={{ my: '20px', width: '90%', mx: 'auto' }} />
       <ReactDataTable rows={ProductData} columns={columns} />
     </>
   )

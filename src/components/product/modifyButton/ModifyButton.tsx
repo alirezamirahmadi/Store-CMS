@@ -30,12 +30,14 @@ export default function ModifyButton({ rowData }: { value: string, onChange: (ev
 
   return (
     <>
-      <IconButton color="primary" onClick={handleEdit} title="Edit">
-        <AppRegistrationIcon />
-      </IconButton>
-      <IconButton color="primary" onClick={handleDelete} title="Delete">
-        <DeleteIcon />
-      </IconButton>
+      <div className="flex">
+        <IconButton color="primary" onClick={handleEdit} title="Edit">
+          <AppRegistrationIcon />
+        </IconButton>
+        <IconButton color="primary" onClick={handleDelete} title="Delete">
+          <DeleteIcon />
+        </IconButton>
+      </div>
       {showEditModal && <Modal title='Modify Product' children={<ProductModify product={rowData} />} buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }]} />}
       {showDeleteModal && <Modal title="Delete Product" message={`Are you sure you want to delete "${rowData.title}" ?`} buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }, { id: '2', title: 'Delete', variant: 'outlined', onClick: deleteProduct }]} />}
     </>
