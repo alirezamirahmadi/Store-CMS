@@ -2,7 +2,7 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
-export default function ModifyButton({ rowData, handleAction }: { value: string, onChange: (event: any) => void, rowData: any, handleAction: (data:any, action: string) => void }): React.JSX.Element {
+export default function ModifyButtons({ rowData, handleAction }: { value: string, onChange: (event: any) => void, rowData: any, handleAction: (data:any, action: string) => void }): React.JSX.Element {
 
   const handleEdit = () => {
     handleAction(rowData, 'Edit');

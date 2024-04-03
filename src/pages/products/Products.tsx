@@ -6,7 +6,7 @@ import type { ColumnType } from "react-datatable-responsive";
 import ProductModify from "../../components/product/productModify/ProductModify";
 import { ProductData } from '../../assets/data/Data';
 import { ProductType } from '../../type/ProductType';
-import ModifyButton from '../../components/global/modifyButtons/ModifyButtons';
+import ModifyButtons from '../../components/global/modifyButtons/ModifyButtons';
 import Modal from '../../components/modal/Modal';
 
 export default function Products(): React.JSX.Element {
@@ -24,7 +24,7 @@ export default function Products(): React.JSX.Element {
     { field: { title: 'stock' }, label: 'Stock' },
     {
       field: { title: 'modify' }, label: 'Modify', kind: 'component', options: {
-        component: (value, onChange, rowData) => (<ModifyButton value={value} onChange={(event: any) => onChange && onChange(event.target.value)} rowData={rowData} handleAction={handleAction} />)
+        component: (value, onChange, rowData) => (<ModifyButtons value={value} onChange={(event: any) => onChange && onChange(event.target.value)} rowData={rowData} handleAction={handleAction} />)
       }
     },
   ]
