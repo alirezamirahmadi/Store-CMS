@@ -56,7 +56,7 @@ export default function Products(): React.JSX.Element {
       <Divider sx={{ my: '20px', width: '90%', mx: 'auto' }} />
       <ReactDataTable rows={ProductData} columns={columns} />
       {showEditModal && <Modal title='Modify Product' children={<ProductModify product={rowData} />} buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }]} />}
-      {showDeleteModal && <Modal title="Delete Product" message={`Are you sure you want to delete "${rowData?.title}" ?`} buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }, { id: '2', title: 'Delete', variant: 'outlined', onClick: deleteProduct }]} />}
+      {showDeleteModal && <Modal title="Delete Product" message={`Are you sure you want to delete "${rowData?.title}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color:'error', onClick: deleteProduct }]} />}
     </>
   )
 }

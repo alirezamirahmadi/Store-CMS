@@ -8,6 +8,7 @@ import DiscountIcon from '@mui/icons-material/Discount';
 import type { MenuType } from "../../type/HomeType";
 import type { ProductCategoryType, ProductType } from '../../type/ProductType';
 import { UserType } from '../../type/UserType';
+import { CommentType } from '../../type/CommentType';
 
 const MenuData: MenuType[] = [
   { id: 1, title: 'Home', icon: <MeetingRoomIcon fontSize='medium' color='inherit' />, href: '/home' },
@@ -39,6 +40,15 @@ const UserData: UserType[] = [
   { id: '4', firstName: 'Alireza', lastName: 'Mirahmadi', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
 ]
 
+const CommentData: CommentType[] = [
+  { id: '1', creator: { id: '1', firstName: 'Anna', lastName: 'Mirahmadi', phone: '09139875583' }, content: 'Hello LenaAnna 1', date: '2024-02-03', time: '11:32' },
+  { id: '2', creator: { id: '2', firstName: 'Lena', lastName: 'Mirahmadi', phone: '09139875583' }, content: 'Hello LenaAnna 2', date: '2024-02-03', time: '11:30' },
+  {
+    id: '3', creator: { id: '3', firstName: 'Fakhri', lastName: 'Khorasani', phone: '09139875583' }, content: 'Hello LenaAnna 3', date: '2024-02-03', time: '12:32',
+    answer:[{ id: '1', creator: { id: '1', firstName: 'Anna', lastName: 'Mirahmadi', phone: '09139875583' }, content: 'Hello Answer', date: '2024-02-03', time: '02:32' }],
+  },
+]
+
 export {
-  MenuData, ProductCategoryData, ProductData, UserData
+  MenuData, ProductCategoryData, ProductData, UserData, CommentData
 }

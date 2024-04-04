@@ -16,7 +16,10 @@ type TextBoxType = {
 type ModalType = {
   title?: string,
   message?: string,
-  buttons: { id: string, title: string, variant?: 'text' | 'contained' | 'outlined', onClick: () => void }[]
+  buttons: {
+    id: string, title: string, variant?: 'text' | 'contained' | 'outlined',
+    color?: "inherit" | "primary" | "secondary" | "error" | "info" | "success" | "warning", onClick: () => void
+  }[]
   children?: React.JSX.Element
 }
 

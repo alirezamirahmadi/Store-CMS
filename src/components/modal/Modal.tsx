@@ -15,7 +15,7 @@ export default function Modal({ title, message, buttons, children }: ModalType) 
           <div className="flex flex-row-reverse gap-4">
             {
               buttons.map(button => (
-                <Button key={button.id} variant={button.variant ?? "contained"} onClick={button.onClick}>{button.title}</Button>
+                <Button key={button.id} variant={button.variant ?? "contained"} color={button.color ?? 'primary'} onClick={button.onClick}>{button.title}</Button>
               ))
             }
           </div>
