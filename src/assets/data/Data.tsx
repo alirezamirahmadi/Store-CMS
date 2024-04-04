@@ -34,18 +34,18 @@ const ProductData: ProductType[] = [
 ]
 
 const UserData: UserType[] = [
-  { id: '1', firstName: 'Anna', lastName: 'Mirahmadi', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
-  { id: '2', firstName: 'Lena', lastName: 'Mirahmadi', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
-  { id: '3', firstName: 'Fakhri', lastName: 'Khorasani', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
-  { id: '4', firstName: 'Alireza', lastName: 'Mirahmadi', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
+  { id: '1', firstName: 'Anna', lastName: 'Mirahmadi', image:'./image/users/user-1.png', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
+  { id: '2', firstName: 'Lena', lastName: 'Mirahmadi', image:'./image/users/user-2.png', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
+  { id: '3', firstName: 'Fakhri', lastName: 'Khorasani', image:'./image/users/user-3.png', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
+  { id: '4', firstName: 'Alireza', lastName: 'Mirahmadi', image:'./image/users/user-1.png', province: 'Kerman', city: 'Kerman', address: 'Shariati St', phone: '09139875583', postalCode: '6587-6587', email: 'kerman@yahoo.com', ePhone: '09139876543', description: 'beautiful' },
 ]
 
 const CommentData: CommentType[] = [
-  { id: '1', creator: { id: '1', firstName: 'Anna', lastName: 'Mirahmadi', phone: '09139875583' }, content: 'Hello LenaAnna 1', date: '2024-02-03', time: '11:32' },
-  { id: '2', creator: { id: '2', firstName: 'Lena', lastName: 'Mirahmadi', phone: '09139875583' }, content: 'Hello LenaAnna 2', date: '2024-02-03', time: '11:30' },
+  { id: '1', creator: { id: '1', firstName: 'Anna', lastName: 'Mirahmadi', image:'./image/users/user-1.png', phone: '09139875583' }, content: 'Hello LenaAnna 1', date: '2024-02-03', time: '11:32' },
+  { id: '2', creator: { id: '2', firstName: 'Lena', lastName: 'Mirahmadi', image:'./image/users/user-2.png', phone: '09139875583' }, content: 'Hello LenaAnna 2', date: '2024-02-03', time: '11:30' },
   {
-    id: '3', creator: { id: '3', firstName: 'Fakhri', lastName: 'Khorasani', phone: '09139875583' }, content: 'Hello LenaAnna 3', date: '2024-02-03', time: '12:32',
-    answer:[{ id: '1', creator: { id: '1', firstName: 'Anna', lastName: 'Mirahmadi', phone: '09139875583' }, content: 'Hello Answer', date: '2024-02-03', time: '02:32' }],
+    id: '3', creator: { id: '3', firstName: 'Fakhri', lastName: 'Khorasani', image:'./image/users/user-3.png', phone: '09139875583' }, content: 'Hello LenaAnna 3', date: '2024-02-03', time: '12:32',
+    answer:[{ id: '1', creator: { id: '1', firstName: 'Anna', lastName: 'Mirahmadi', image:'./image/users/user-1.png', phone: '09139875583' }, content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis omnis, doloribus sunt expedita inventore delectus nisi quidem earum hic. Sapiente voluptas nostrum similique optio ullam magni accusantium facilis voluptatibus! Rerum?', date: '2024-02-03', time: '02:32' }],
   },
 ]
 

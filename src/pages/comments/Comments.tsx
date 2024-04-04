@@ -4,9 +4,10 @@ import type { ColumnType } from "react-datatable-responsive";
 
 import Modal from '../../components/modal/Modal';
 import ModifyButtons from '../../components/global/modifyButtons/ModifyButtons';
+import CommentModify from '../../components/comment/commentModify/CommentModify';
 import { CommentType } from '../../type/CommentType';
 import { CommentData } from '../../assets/data/Data';
-
+import '../../../public/image/users/user-1.png'
 export default function Comments(): React.JSX.Element {
 
   const [rowData, setRowData] = useState<CommentType>();
@@ -51,8 +52,7 @@ export default function Comments(): React.JSX.Element {
     <>
       <div className="mt-8"></div>
       <ReactDataTable rows={CommentData} columns={columns} />
-      {/* {showEditModal && <Modal title='Modify Comment' children={<ProductModify product={rowData} />} buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }]} />} */}
-      {showEditModal && <Modal title='Modify Comment' buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }]} />}
+      {showEditModal && <Modal title='View Comment' children={<CommentModify comment={rowData} />} buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }]} />}
       {showDeleteModal && <Modal title="Delete Comment" message={`Are you sure you want to delete "${rowData?.content}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color: 'error', onClick: deleteComment }]} />}
     </>
   )
