@@ -16,11 +16,6 @@ import NavBar from '../navbar/NavBar';
 
 const drawerWidth = 240;
 
-// type openCollapseType = {
-//   id: number,
-//   open: boolean
-// }
-
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
