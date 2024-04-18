@@ -23,7 +23,15 @@ type ModalType = {
   children?: React.JSX.Element
 }
 
+type HomeCardType = {
+  id:string,
+  title:string, 
+  value:number, 
+  changeRate:number, 
+  description:string,
+}
+
 
 export type {
-  MenuType, TextBoxType, ModalType
+  MenuType, TextBoxType, ModalType, HomeCardType
 }

@@ -46,7 +46,7 @@ export default function Theme() {
 
         primary: {
           main: '#00A693', //'#48d1cc', //'#8BB867',
-          light: '#8ed557',
+          light: '#66dfd1', //'#8ed557',
           contrastText: '#fff',
         },
       },

@@ -18,7 +18,7 @@ export default function ModifyButtons({ rowData, handleAction }: { value: string
         <IconButton color="primary" onClick={handleEdit} title="Edit">
           <AppRegistrationIcon />
         </IconButton>
-        <IconButton color="primary" onClick={handleDelete} title="Delete">
+        <IconButton color="error" onClick={handleDelete} title="Delete">
           <DeleteIcon />
         </IconButton>
       </div>

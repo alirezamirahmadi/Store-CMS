@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Button, Typography } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
+import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import ReactDataTable from 'react-datatable-responsive';
 import type { ColumnType } from "react-datatable-responsive";
 
@@ -45,7 +46,7 @@ export default function Orders(): React.JSX.Element {
             setShowEditModal(true);
             setRowData(rowData);
           }
-          return <Button onClick={showDatils} variant='contained'>View</Button>
+          return <IconButton onClick={showDatils}><ViewInArIcon color='primary' /></IconButton>
         }
       }
     },
