@@ -11,7 +11,7 @@ import { UserType } from '../../type/UserType';
 import { CommentType } from '../../type/CommentType';
 import { DiscountCodesType } from '../../type/DiscountCodesType';
 import { OrderType } from '../../type/OrderType';
-import { HomeCardType } from '../../type/HomeType';
+import { HomeCardType, HomeChartType } from '../../type/HomeType';
 
 const MenuData: MenuType[] = [
   { id: 1, title: 'Home', icon: <MeetingRoomIcon fontSize='medium' color='inherit' />, href: '/' },
@@ -93,6 +93,42 @@ const HomeCardData: HomeCardType[] = [
   { id: '3', title: 'Cost', value: 254, changeRate: 3.6, description: 'Compared to last month' },
 ]
 
+const HomeChartData: HomeChartType[] = [
+  {
+    id: '1', title: 'Income', data: [
+      { id: '1', name: 'Jan', amount: 100 },
+      { id: '2', name: 'Feb', amount: 150 },
+      { id: '3', name: 'Mar', amount: 160 },
+      { id: '4', name: 'Apr', amount: 120 },
+      { id: '5', name: 'May', amount: 130 },
+      { id: '6', name: 'Jun', amount: 190 },
+      { id: '7', name: 'Jul', amount: 170 },
+      { id: '8', name: 'Age', amount: 180 },
+      { id: '9', name: 'Sep', amount: 160 },
+      { id: '10', name: 'Oct', amount: 180 },
+      { id: '11', name: 'Nov', amount: 190 },
+      { id: '12', name: 'Dec', amount: 195 },
+    ]
+  },
+  {
+    id: '2', title: 'Sales', data: [
+      { id: '13', name: 'Jan', amount: 150 },
+      { id: '14', name: 'Feb', amount: 150 },
+      { id: '15', name: 'Mar', amount: 120 },
+      { id: '16', name: 'Apr', amount: 170 },
+      { id: '17', name: 'May', amount: 180 },
+      { id: '18', name: 'Jun', amount: 160 },
+      { id: '19', name: 'Jul', amount: 200 },
+      { id: '20', name: 'Age', amount: 210 },
+      { id: '21', name: 'Sep', amount: 210 },
+      { id: '22', name: 'Oct', amount: 240 },
+      { id: '23', name: 'Nov', amount: 250 },
+      { id: '24', name: 'Dec', amount: 265 },
+    ]
+  },
+]
+
 export {
-  MenuData, ProductCategoryData, ProductData, UserData, CommentData, DiscountCodesData, OrderData, HomeCardData
+  MenuData, ProductCategoryData, ProductData, UserData, CommentData, DiscountCodesData, OrderData, HomeCardData,
+  HomeChartData
 }

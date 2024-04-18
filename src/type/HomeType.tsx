@@ -24,14 +24,29 @@ type ModalType = {
 }
 
 type HomeCardType = {
-  id:string,
-  title:string, 
-  value:number, 
-  changeRate:number, 
-  description:string,
+  id: string,
+  title: string,
+  value: number,
+  changeRate: number,
+  description: string,
+}
+
+type ChartType = {
+  id: string,
+  title: string,
+  data: any[],
+  dataKeyX: string,
+  dataKeyY: string,
+  grid?: boolean
+}
+
+type HomeChartType = {
+  id: string,
+  title: string,
+  data: { id: string, name: string, amount: number }[],
 }
 
 
 export type {
-  MenuType, TextBoxType, ModalType, HomeCardType
+  MenuType, TextBoxType, ModalType, HomeCardType, ChartType, HomeChartType
 }
