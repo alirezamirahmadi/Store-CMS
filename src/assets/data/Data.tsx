@@ -63,23 +63,23 @@ const DiscountCodesData: DiscountCodesType[] = [
 
 const OrderData: OrderType[] = [
   {
-    id: '1', code: '23765', orderDate: '06/11/1401', status: "Delivered", price: 252, off: 28, details: [
+    id: '1', code: '23765', orderDate: '2024-05-06', status: "Delivered", price: 252, off: 28, details: [
       { id: '1', category: { id: '1', title: 'Phone' }, title: 'Redmi 9', image: 'logo192.png', price: 120, stock: 5 },
       { id: '2', category: { id: '1', title: 'Phone' }, title: 'Redmi Note 10', image: 'logo192.png', price: 160, stock: 12 },
     ]
   },
   {
-    id: '2', code: '87543', orderDate: '08/12/1401', status: "Canceled", price: 128, off: 32, details: [
+    id: '2', code: '87543', orderDate: '2024-02-12', status: "Canceled", price: 128, off: 32, details: [
       { id: '2', category: { id: '1', title: 'Phone' }, title: 'Redmi Note 10', image: 'logo192.png', price: 160, stock: 12 },
     ]
   },
   {
-    id: '3', code: '09755', orderDate: '06/06/1402', status: "Delivered", price: 120, details: [
+    id: '3', code: '09755', orderDate: '2024-04-03', status: "Delivered", price: 120, details: [
       { id: '1', category: { id: '1', title: 'Phone' }, title: 'Redmi 9', image: 'logo192.png', price: 120, stock: 5 },
     ]
   },
   {
-    id: '4', code: '12432', orderDate: '15/10/1402', status: "In process", price: 630, off: 70, details: [
+    id: '4', code: '12432', orderDate: '2024-02-15', status: "In process", price: 630, off: 70, details: [
       { id: '4', category: { id: '2', title: 'Laptop' }, title: 'hp RE4', image: 'logo192.png', price: 400, stock: 15 },
       { id: '5', category: { id: '3', title: 'Monitor' }, title: 'Samsung 22', image: 'logo192.png', price: 170, stock: 67 },
       { id: '6', category: { id: '3', title: 'Monitor' }, title: 'LG 20', image: 'logo192.png', price: 130, stock: 34 },

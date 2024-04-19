@@ -1,6 +1,6 @@
-import { List, ListItem, Divider, ListItemText, ListItemAvatar, Avatar } from '@mui/material'
+import { List, ListItem, Divider, ListItemText, ListItemAvatar, Avatar } from '@mui/material';
 
-import { UserType } from '../../../type/UserType'
+import { UserType } from '../../../type/UserType';
 
 export default function UserWidget({ user }: { user: UserType }) {
   return (
