@@ -11,7 +11,7 @@ export default function HomeCard({ title, value, changeRate, description }: Home
 
   return (
     <>
-      <Box sx={{ bgcolor: theme.palette.primary.light, p: '16px', textAlign: 'center', borderRadius: '10px', maxWidth: '250px', boxShadow: '' }}>
+      <Box sx={{ bgcolor: theme.palette.primary.light, p: '16px', textAlign: 'center', borderRadius: '10px', minWidth: '250px', maxWidth: '450px', boxShadow: '' }}>
         <Typography variant='h5' sx={{ fontWeight: '600' }}>{title}</Typography>
         <div className="flex gap-8 my-4 justify-center">
           <Typography variant='h6' sx={{ fontWeight: '600' }}>{value} $</Typography>

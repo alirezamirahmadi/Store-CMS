@@ -23,13 +23,12 @@ export default function OrderWidget({ order }: { order: OrderType }) {
     <>
       <div>
         <List>
-          <Divider />
           <ListItem>
-            <ListItemText primary={order.code} />
-            <ListItemText primary={order.orderDate} />
-            <ListItemText primary={order.price + '$'} />
+            <ListItemText primary={order.code} secondary={order.orderDate} />
+            <ListItemText primary={order.price + '$'} secondary={order.off + '$'}/>
             <ListItemIcon>{icon}</ListItemIcon>
           </ListItem>
+          <Divider />
         </List>
       </div>
     </>

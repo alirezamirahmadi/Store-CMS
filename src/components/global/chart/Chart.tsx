@@ -12,8 +12,8 @@ export default function Chart({ data, dataKeyX, dataKeyY, title, grid }: ChartTy
 
   return (
     <>
-      <Typography variant='h5' sx={{ mt: '16px', textAlign: 'center', fontWeight: '600' }}>{title}</Typography>
-      <div className="h-96">
+      <div className="h-48 w-4/5">
+      <Typography variant='h5' sx={{ mt: '16px', textAlign: 'center', fontWeight: '600', display:'block' }}>{title}</Typography>
         <ResponsiveContainer>
           <LineChart width={700} height={250} data={data} >
             <Line type='monotone' dataKey={dataKeyY} stroke={theme.palette.primary.main} yAxisId={0} />

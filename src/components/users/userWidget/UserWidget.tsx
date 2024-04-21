@@ -7,13 +7,14 @@ export default function UserWidget({ user }: { user: UserType }) {
     <>
       <div>
         <List>
-          <Divider variant="inset" />
           <ListItem>
             <ListItemAvatar>
               <Avatar alt={user.firstName} src={user.image} />
             </ListItemAvatar>
-            <ListItemText primary={user.firstName} secondary={user.email} />
+            <ListItemText primary={user.firstName + ' ' + user.lastName} secondary={user.city} />
+            <ListItemText primary={user.phone} secondary={user.email} />
           </ListItem>
+          <Divider variant="inset" />
         </List>
       </div>
     </>
