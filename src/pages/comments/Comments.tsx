@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 import ReactDataTable from 'react-datatable-responsive';
 import type { ColumnType } from "react-datatable-responsive";
 
@@ -21,6 +22,11 @@ export default function Comments(): React.JSX.Element {
     { field: { title: 'content' }, label: 'Content' },
     { field: { title: 'date' }, label: 'Date' },
     { field: { title: 'time' }, label: 'Time' },
+    {
+      field: { title: 'isAccepted' }, label: 'Accepted', kind: 'component', options: {
+        component: (value, onChange, rowData) => (value ? <DoneAllIcon color='primary'/> : <div></div>)
+      }
+    },
     {
       field: { title: 'modify' }, label: 'Modify', kind: 'component', options: {
         component: (value, onChange, rowData) => (<ModifyButtons value={value} onChange={(event: any) => onChange && onChange(event.target.value)} rowData={rowData} handleAction={handleAction} />)

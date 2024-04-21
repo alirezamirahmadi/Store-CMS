@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { TextField, Typography, Button, Select, MenuItem, SelectChangeEvent } from "@mui/material";
+import { TextField, Typography, Button, Select, MenuItem, SelectChangeEvent, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 
 import { ProductCategoryData } from "../../../assets/data/Data";
 import { ProductType } from "../../../type/ProductType";
 
-export default function ProductModify({product}:{product?:ProductType}):React.JSX.Element {
+export default function ProductModify({ product }: { product?: ProductType }): React.JSX.Element {
   // const [bindingImage, setImage, resetImage] = useInputValue();
 
 
@@ -15,11 +15,13 @@ export default function ProductModify({product}:{product?:ProductType}):React.JS
   // const [image, setImage] = useState<string>('');
   const [price, setPrice] = useState<number>(product?.price ?? 0);
   const [stock, setStock] = useState<number>(product?.stock ?? 0);
+  const [active, setActive] = useState<boolean>(product?.isActive ?? false);
 
   const emptyTextField = () => {
     setTitle('');
     setPrice(0);
     setStock(0);
+    setActive(false);
   }
 
   const handleChangeSection = (event: SelectChangeEvent) => {
@@ -46,6 +48,9 @@ export default function ProductModify({product}:{product?:ProductType}):React.JS
               ))
             }
           </Select>
+          <FormGroup>
+            <FormControlLabel control={<Checkbox checked={active} color="primary" />} label="Active" />
+          </FormGroup>
         </div>
         <div className="flex flex-wrap gap-4 items-center justify-center mt-4">
           <Button variant="contained" component="label" startIcon={<AttachFileOutlinedIcon />}>

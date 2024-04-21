@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField, Button, Typography } from "@mui/material";
+import { TextField, Button, Typography, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 
 import { UserType } from "../../../type/UserType";
@@ -16,6 +16,7 @@ export default function UserModify({ user }: { user?: UserType }): React.JSX.Ele
   const [postalCode, setPostalCode] = useState<string>(user?.postalCode ?? '');
   const [email, setEmail] = useState<string>(user?.email ?? '');
   const [ePhone, setEPhone] = useState<string>(user?.ePhone ?? '');
+  const [active, setActive] = useState<boolean>(user?.isActive ?? false);
 
   const emptyTextField = () => {
     setFirstName('');
@@ -27,6 +28,7 @@ export default function UserModify({ user }: { user?: UserType }): React.JSX.Ele
     setPostalCode('');
     setEmail('');
     setEPhone('');
+    setActive(true);
   }
 
   const submitUser = () =>{
@@ -46,6 +48,9 @@ export default function UserModify({ user }: { user?: UserType }): React.JSX.Ele
           <TextField value={postalCode} onChange={() => setPostalCode} variant="outlined" label={<Typography variant="body1">Postal Code</Typography>} />
           <TextField value={email} onChange={() => setEmail} variant="outlined" label={<Typography variant="body1">Email</Typography>} />
           <TextField value={ePhone} onChange={() => setEPhone} variant="outlined" label={<Typography variant="body1">EPhone</Typography>} />
+          <FormGroup>
+            <FormControlLabel control={<Checkbox checked={active} color="primary" />} label="Active" />
+          </FormGroup>
         </div>
         <div className="flex flex-wrap justify-center mt-4">
           <Button variant="contained" onClick={submitUser} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>

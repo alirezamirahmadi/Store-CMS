@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField, Typography, Button, Avatar } from "@mui/material";
+import { TextField, Typography, Button, Avatar, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 
 import { CommentType } from "../../../type/CommentType";
@@ -7,6 +7,7 @@ import { CommentType } from "../../../type/CommentType";
 export default function CommentModify({ comment }: { comment?: CommentType }): React.JSX.Element {
 
   const [answerContent, setAnswerContent] = useState<string>('');
+  const [accepted, setAccepted] = useState<boolean>(comment?.isAccepted ?? false);
 
   const emptyTextField = () => {
     setAnswerContent('');
@@ -48,6 +49,9 @@ export default function CommentModify({ comment }: { comment?: CommentType }): R
         </div>
         <div className="mb-1">
           <TextField value={answerContent} onChange={() => setAnswerContent} multiline fullWidth rows={4} variant="outlined" label={<Typography variant="body1">Write your answer ...</Typography>} />
+          <FormGroup>
+            <FormControlLabel control={<Checkbox checked={accepted} color="primary" />} label="Accept" />
+          </FormGroup>
         </div>
         <Button variant="contained" onClick={() => submitComment} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
       </form>

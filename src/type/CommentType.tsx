@@ -7,7 +7,8 @@ type CommentType = {
   content: string,
   date: string,
   time: string,
-  answer?: CommentType[]
+  answer?: CommentType[],
+  isAccepted: boolean,
 }
 
 export type {

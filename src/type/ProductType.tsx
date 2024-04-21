@@ -11,6 +11,7 @@ type ProductType = {
   image: string,
   price: number,
   stock: number,
+  isActive:boolean,
 }
 
 
