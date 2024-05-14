@@ -28,16 +28,14 @@ export default function Snack({ context, severity, show, handleCloseSnack }: Sna
   };
 
   return (
-    <div dir='rtl'>
-      <Stack spacing={2} sx={{ width: '100%' }}>
-        <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
-            <Typography variant='body2'>
-              {context}
-            </Typography>
-          </Alert>
-        </Snackbar>
-      </Stack>
-    </div>
+    <Stack spacing={2} sx={{ width: '100%' }}>
+      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+          <Typography variant='body2'>
+            {context}
+          </Typography>
+        </Alert>
+      </Snackbar>
+    </Stack>
   );
 }
