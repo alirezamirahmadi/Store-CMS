@@ -1,20 +1,25 @@
-import { useState } from "react";
 import { TextField, Typography, Button, Avatar, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import { useForm } from 'react-hook-form';
 
 import { CommentType } from "../../../type/CommentType";
 
 export default function CommentModify({ comment }: { comment?: CommentType }): React.JSX.Element {
 
-  const [answerContent, setAnswerContent] = useState<string>('');
-  const [accepted, setAccepted] = useState<boolean>(comment?.isAccepted ?? false);
+  const { register, handleSubmit, formState: { errors }, resetField, getValues } = useForm({
+    defaultValues: {
+      answerContent: '',
+      accepted: comment?.isAccepted
+    }
+  });
 
   const emptyTextField = () => {
-    setAnswerContent('');
+    resetField('answerContent');
+    resetField('accepted');
   }
 
-  const submitComment = (event: HTMLButtonElement) => {
-    console.log(event);
+  const submitComment = (data: any) => {
+    console.log(data);
     emptyTextField();
   }
 
@@ -48,12 +53,12 @@ export default function CommentModify({ comment }: { comment?: CommentType }): R
           </div>
         </div>
         <div className="mb-1">
-          <TextField value={answerContent} onChange={() => setAnswerContent} multiline fullWidth rows={4} variant="outlined" label={<Typography variant="body1">Write your answer ...</Typography>} />
+          <TextField {...register('answerContent', { required: true })} error={errors.answerContent ? true : false} helperText={errors.answerContent && 'Answer is required.'} multiline fullWidth rows={4} variant="outlined" label={<Typography variant="body1">Write your answer ...</Typography>} />
           <FormGroup>
-            <FormControlLabel control={<Checkbox checked={accepted} color="primary" />} label="Accept" />
+            <FormControlLabel control={<Checkbox {...register('accepted')} checked={getValues('accepted')} color="primary" />} label="Accept" />
           </FormGroup>
         </div>
-        <Button variant="contained" onClick={() => submitComment} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
+        <Button variant="contained" onClick={handleSubmit(submitComment)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
       </form>
     </>
   )

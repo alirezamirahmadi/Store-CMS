@@ -1,42 +1,39 @@
-import { useState } from "react";
 import { TextField, Button, Typography, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import { useForm } from 'react-hook-form';
 
 import { DiscountCodesType } from "../../../type/DiscountCodesType";
 
 
 export default function DiscountCodeModify({ discountCode }: { discountCode?: DiscountCodesType }): React.JSX.Element {
 
-  const [code, setCode] = useState<string>(discountCode?.code ?? '');
-  const [percent, setPercent] = useState<number>(discountCode?.percent ?? 0);
-  const [maximumuse, setMaximumuse] = useState<number>(discountCode?.maximumuse ?? 0);
-  const [active, setActive] = useState<boolean>(discountCode?.isActive ?? false);
+  const { register, formState: { errors }, handleSubmit, reset, getValues } = useForm({
+    defaultValues: {
+      code: discountCode?.code,
+      percent: discountCode?.percent,
+      maximumuse: discountCode?.maximumuse,
+      active: discountCode?.isActive,
+    }
+  });
 
-  const emptyTextField = () => {
-    setCode('');
-    setPercent(0);
-    setMaximumuse(0);
-    setActive(false);
-  }
-
-  const submitDiscountCode = (event: HTMLButtonElement) => {
-    console.log(event);
-    emptyTextField();
+  const submitDiscountCode = (data: any) => {
+    console.log(data);
+    reset();
   }
 
   return (
     <>
       <form className="mt-8">
-        <div className="flex flex-wrap gap-4 items-center justify-center">
-          <TextField value={code} onChange={() => setCode} variant="outlined" label={<Typography variant="body1">Code</Typography>} />
-          <TextField value={percent} onChange={() => setPercent} variant="outlined" label={<Typography variant="body1">Percent</Typography>} />
-          <TextField value={maximumuse} onChange={() => setMaximumuse} variant="outlined" label={<Typography variant="body1">Maximumuse</Typography>} />
+        <div className="flex flex-wrap gap-4 justify-center">
+          <TextField {...register('code', { required: true })} error={errors.code ? true : false} required helperText={errors.code && 'Code is required.'} variant="outlined" label={<Typography variant="body1" sx={{ display: 'inline' }}>Code</Typography>} />
+          <TextField {...register('percent', { required: true })} error={errors.percent ? true : false} required helperText={errors.percent && 'percent is required.'} variant="outlined" label={<Typography variant="body1" sx={{ display: 'inline' }}>Percent</Typography>} />
+          <TextField {...register('maximumuse', { required: true })} error={errors.maximumuse ? true : false} required helperText={errors.maximumuse && 'Maximum use is required.'} variant="outlined" label={<Typography variant="body1" sx={{ display: 'inline' }}>Maximumuse</Typography>} />
           <FormGroup>
-            <FormControlLabel control={<Checkbox checked={active} color="primary" />} label="Active" />
+            <FormControlLabel control={<Checkbox {...register('active')} checked={getValues('active')} color="primary" />} label="Active" />
           </FormGroup>
         </div>
         <div className="flex justify-center mt-4">
-          <Button variant="contained" onClick={() => submitDiscountCode} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
+          <Button variant="contained" onClick={handleSubmit(submitDiscountCode)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
         </div>
       </form>
     </>
