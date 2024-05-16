@@ -9,16 +9,22 @@ import Snack from "../../components/global/snack/Snack";
 import regex from "../../utils/Regex";
 import { postLogin, getLogin } from "../../redux/reducers/LoginReducer";
 import OTPInput from "../../components/CustomizedComponent/otpInput/OTPInput";
-// import { useUser, useMutationUser } from "../../Hooks/UserHook";
+import { useQueryUser, useMutationUser } from "../../hooks/UserHook";
 
 export default function Login({ closeDrawer }: { closeDrawer?: () => void }): React.JSX.Element {
 
+  const { register, handleSubmit, formState: { errors }, getValues } = useForm({
+    defaultValues: {
+      phone: '',
+      firstName: '',
+      lastName: ''
+    }
+  });
   const dispatch = useDispatch<AppDispatch>();
   const loginInfo = useSelector((state: RootState) => state.login);
   const theme = useTheme();
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  // const { data: userInfo } = useUser(phone);
-  // const { mutate: addUser } = useMutationUser("POST");
+  const { data: userInfo } = useQueryUser(getValues('phone'));
+  const { mutate: addUser } = useMutationUser("POST");
   const [, setCookie,] = useCookies(['token']);
   const [isRegister, setIsRegister] = useState<boolean>(false);
   const [showSnack, setShowSnack] = useState<boolean>(false);
@@ -32,31 +38,31 @@ export default function Login({ closeDrawer }: { closeDrawer?: () => void }): Re
     //   return;
     // }
 
-    // userInfo?.length > 0 ? setSendMessage(true) : showMessage('You are not registered yet');
+    userInfo?.length > 0 ? setSendMessage(true) : showMessage('You are not registered yet');
   }
 
-  // const showMessage = (message: string) => {
-  //   setContextSnack(message);
-  //   setShowSnack(true);
-  // }
+  const showMessage = (message: string) => {
+    setContextSnack(message);
+    setShowSnack(true);
+  }
 
   const verifyOneTimePassword = () => {
-    // if (oneTimePassword === '11111') {
-    //   dispatch(postLogin(userInfo[0])).then(() => {
-    //     dispatch(getLogin(userInfo[0]?.phone ?? '0'));
-    //   })
-    //   setCookie('token', userInfo[0]?.phone ?? '0');
-    //   closeDrawer && closeDrawer();
-    // }
+    if (oneTimePassword === '11111') {
+      dispatch(postLogin(userInfo[0])).then(() => {
+        dispatch(getLogin(userInfo[0]?.phone ?? '0'));
+      })
+      setCookie('token', userInfo[0]?.phone ?? '0');
+      closeDrawer && closeDrawer();
+    }
   }
 
-  const registerHandler = () => {
+  const registerHandler = (data: any) => {
     // if (!ValidateRegex(phone, regex.phone) || !ValidateRegex(firstName, regex.flName) || !ValidateRegex(lastName, regex.flName)) {
     //   showMessage('The information entered is not correct');
     //   return;
     // }
 
-    // addUser({ id: phone, firstName, lastName, phone });
+    addUser({ id: data.phone, firstName: data.firstName, lastName: data.lastName, phone: data.phone, isActive: true });
     closeDrawer && closeDrawer();
   }
 
