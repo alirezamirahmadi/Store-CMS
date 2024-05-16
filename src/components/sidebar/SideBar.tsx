@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import {
   Box, Tooltip, Toolbar, List, CssBaseline, Typography, Divider, IconButton,
   ListItem, ListItemButton, ListItemIcon, ListItemText,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -88,9 +88,10 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
 
   const theme = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   // const [openCollapse, setOpenCollapse] = useState<openCollapseType[]>([]);
-  const [listSelected, setListSelected] = useState(0);
+  const [listSelected, setListSelected] = useState<string>('');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,8 +101,8 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
     setOpen(false);
   }
 
-  const selectCategory = (id: number, href: string) => {
-    setListSelected(id);
+  const selectCategory = (href: string) => {
+    setListSelected(href);
     navigate(href);
   }
 
@@ -118,6 +119,10 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
   //   })
   //   setOpenCollapse([...tempArray]);
   // }, [])
+
+  useEffect(() => {
+    setListSelected(location.pathname);
+  }, [])
 
   return (
     <div className='flex'>
@@ -147,8 +152,8 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
             MenuData?.map(menuItem => (
               <ListItem key={menuItem.id} disablePadding sx={{ display: 'block', mb: 2.5 }}>
                 <Tooltip title={open ? '' : menuItem.title}>
-                  <ListItemButton onClick={() => selectCategory(menuItem.id, menuItem.href)} sx={{ height: 30, justifyContent: open ? 'initial' : 'center', px: 2.5, mb: 1, color: listSelected === menuItem.id ? theme.palette.primary.main : '' }}>
-                    <ListItemIcon sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color: listSelected === menuItem.id ? theme.palette.primary.main : '' }} >
+                  <ListItemButton onClick={() => selectCategory(menuItem.href)} sx={{ height: 30, justifyContent: open ? 'initial' : 'center', px: 2.5, mb: 1, color: listSelected === menuItem.href ? theme.palette.primary.main : '' }}>
+                    <ListItemIcon sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color: listSelected === menuItem.href ? theme.palette.primary.main : '' }} >
                       {menuItem.icon}
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} primary={<Typography variant='body1' >{menuItem.title}</Typography>} />

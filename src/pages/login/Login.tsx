@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 import { Typography, useTheme, TextField, Button } from "@mui/material";
 import { useForm } from 'react-hook-form';
-// import { useCookies } from "react-cookie";
-// import { useDispatch, useSelector } from "react-redux";
-// import type { AppDispatch, RootState } from '../../Redux/Store';
+import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from '../../redux/store/Store';
 
 import Snack from "../../components/global/snack/Snack";
 import regex from "../../utils/Regex";
-// import { postLogin, getLogin } from "../../Redux/Reducer/LoginReucer";
+import { postLogin, getLogin } from "../../redux/reducers/LoginReducer";
 import OTPInput from "../../components/CustomizedComponent/otpInput/OTPInput";
 // import { useUser, useMutationUser } from "../../Hooks/UserHook";
 
 export default function Login({ closeDrawer }: { closeDrawer?: () => void }): React.JSX.Element {
 
-  // const dispatch = useDispatch<AppDispatch>();
-  // const loginInfo = useSelector((state: RootState) => state.login);
+  const dispatch = useDispatch<AppDispatch>();
+  const loginInfo = useSelector((state: RootState) => state.login);
   const theme = useTheme();
   const { register, handleSubmit, formState: { errors } } = useForm();
   // const { data: userInfo } = useUser(phone);
   // const { mutate: addUser } = useMutationUser("POST");
-  // const [, setCookie,] = useCookies(['token']);
+  const [, setCookie,] = useCookies(['token']);
   const [isRegister, setIsRegister] = useState<boolean>(false);
   const [showSnack, setShowSnack] = useState<boolean>(false);
   const [contextSnack, setContextSnack] = useState<string>('');

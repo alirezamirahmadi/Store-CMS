@@ -38,7 +38,7 @@ export default function ProductModify({ product }: { product?: ProductType }): R
           <Select value={category} label="Category" onChange={handleChangeSection} sx={{ height: 56 }}>
             {
               ProductCategoryData.map(category => (
-                <MenuItem key={category.id} value={category.title}>{category.title}</MenuItem>
+                <MenuItem key={category.id} value={category.id}>{category.title}</MenuItem>
               ))
             }
           </Select>
