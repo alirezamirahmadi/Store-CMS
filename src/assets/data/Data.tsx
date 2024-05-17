@@ -88,9 +88,9 @@ const OrderData: OrderType[] = [
 ]
 
 const HomeCardData: HomeCardType[] = [
-  { id: '1', title: 'Income', value: 2_235, changeRate: -1.2, description: 'Compared to last month' },
-  { id: '2', title: 'Sales', value: 1_254, changeRate: 2.0, description: 'Compared to last month' },
-  { id: '3', title: 'Cost', value: 254, changeRate: 3.6, description: 'Compared to last month' },
+  { id: '1', title: 'Income', value: 2_235, icon:'../../../public/svg/home/homeCard/income.svg', changeRate: -1.2, description: 'Compared to last month' },
+  { id: '2', title: 'Sales', value: 1_254, icon:'../../../public/svg/home/homeCard/sale.svg', changeRate: 2.0, description: 'Compared to last month' },
+  { id: '3', title: 'Cost', value: 254, icon:'../../../public/svg/home/homeCard/cost.svg', changeRate: 3.6, description: 'Compared to last month' },
 ]
 
 const HomeChartData: HomeChartType[] = [

@@ -27,6 +27,7 @@ type HomeCardType = {
   id: string,
   title: string,
   value: number,
+  icon: string,
   changeRate: number,
   description: string,
 }
