@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Typography, useTheme, TextField, Button } from "@mui/material";
 import { useForm } from 'react-hook-form';
 import { useCookies } from "react-cookie";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from '../../redux/store/Store';
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from '../../redux/store/Store';
 
 import Snack from "../../components/global/snack/Snack";
 import regex from "../../utils/Regex";
@@ -21,7 +21,6 @@ export default function Login({ closeDrawer }: { closeDrawer?: () => void }): Re
     }
   });
   const dispatch = useDispatch<AppDispatch>();
-  const loginInfo = useSelector((state: RootState) => state.login);
   const theme = useTheme();
   const { data: userInfo } = useQueryUser(getValues('phone'));
   const { mutate: addUser } = useMutationUser("POST");
@@ -33,11 +32,6 @@ export default function Login({ closeDrawer }: { closeDrawer?: () => void }): Re
   const [oneTimePassword, setOneTimePassword] = useState<string>('');
 
   const loginHandler = () => {
-    // if (!ValidateRegex(phone, regex.phone)) {
-    //   showMessage('The phone number entered is incorrect');
-    //   return;
-    // }
-
     userInfo?.length > 0 ? setSendMessage(true) : showMessage('You are not registered yet');
   }
 
@@ -57,11 +51,6 @@ export default function Login({ closeDrawer }: { closeDrawer?: () => void }): Re
   }
 
   const registerHandler = (data: any) => {
-    // if (!ValidateRegex(phone, regex.phone) || !ValidateRegex(firstName, regex.flName) || !ValidateRegex(lastName, regex.flName)) {
-    //   showMessage('The information entered is not correct');
-    //   return;
-    // }
-
     addUser({ id: data.phone, firstName: data.firstName, lastName: data.lastName, phone: data.phone, isActive: true });
     closeDrawer && closeDrawer();
   }

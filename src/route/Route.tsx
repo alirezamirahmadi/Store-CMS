@@ -4,15 +4,15 @@ import Users from "../pages/users/Users";
 import Comments from "../pages/comments/Comments";
 import DiscountCodes from "../pages/discountCodes/DiscountCodes";
 import Orders from "../pages/orders/Orders";
-import Login from "../pages/login/Login";
+import NotFound from "../pages/notFound/NotFound";
 
-const routes = [
-    { path: '/', element: <Login /> },
-    { path: '/products', element: <Products /> },
-    { path: '/users', element: <Users /> },
-    { path: '/comments', element: <Comments /> },
-    { path: '/discount-codes', element: <DiscountCodes /> },
-    { path: 'orders', element: <Orders /> },
+const routes = (isLogin: boolean) => [
+    { path: '/', element: isLogin ? <Home /> : <NotFound /> },
+    { path: '/products', element: isLogin ? <Products /> : <NotFound /> },
+    { path: '/users', element: isLogin ? <Users /> : <NotFound /> },
+    { path: '/comments', element: isLogin ? <Comments /> : <NotFound /> },
+    { path: '/discount-codes', element: isLogin ? <DiscountCodes /> : <NotFound /> },
+    { path: 'orders', element: isLogin ? <Orders /> : <NotFound /> },
 ]
 
 export default routes

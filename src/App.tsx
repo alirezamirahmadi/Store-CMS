@@ -1,26 +1,36 @@
+import { useEffect } from "react";
 import { useRoutes } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Provider } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useCookies } from "react-cookie";
 
+import { RootState, AppDispatch } from "./redux/store/Store";
 import SideBar from "./components/sidebar/SideBar";
 import routes from "./route/Route";
-import store from "./redux/store/Store";
+import { getLogin } from "./redux/reducers/LoginReducer";
 import '../dist/tailwind/output.css';
+import Login from "./pages/login/Login";
 
 function App() {
+  const dispatch = useDispatch<AppDispatch>();
+  const loginInfo = useSelector((state: RootState) => state.login);
+  const [cookies, ,] = useCookies(['token']);
+  const router = useRoutes(routes(loginInfo.isLogin));
 
-  const router = useRoutes(routes);
-  const queryClient = new QueryClient();
+  useEffect(() => {
+    dispatch(getLogin(cookies.token));
+  }, [])
 
   return (
     <>
-      <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
+      {
+        loginInfo.isLogin
+          ?
           <SideBar>
             {router}
           </SideBar>
-        </QueryClientProvider>
-      </Provider>
+          :
+          <Login />
+      }
     </>
   )
 }

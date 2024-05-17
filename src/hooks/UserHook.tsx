@@ -3,20 +3,13 @@ import apiRequests from "../services/axios/AxiosConfig";
 import { UserType } from "../type/UserType";
 
 
-const useQueryUser = (userId?: string) => {
-  return useQuery(`userInfo/${userId}`,
+const useQueryUser = (phone?: string) => {
+  return useQuery(`userInfo/${phone}`,
     async () => {
-      return await apiRequests.get(userId ? `UserData?id=${userId}` : 'UserData').then(res => res.data);
+      return await apiRequests.get(phone ? `UserData?phone=${phone}` : 'UserData').then(res => res.data);
     }
   )
 }
-
-// const useQueryUser = (userId?: string) => {
-//   return useQuery(`UserInfo/${userId}`, async () => {
-//     return userId ? await apiRequests.get(`UserData?id=${userId}`).then(res => res.data)
-//       : await apiRequests.get(`UserData?id=-1`).then(res => res.data)
-//   })
-// }
 
 const useMutationUser = (action: 'POST' | 'PUT' | 'DELETE', userId?: string) => {
   return useMutation(
