@@ -14,7 +14,7 @@ import { OrderType } from '../../type/OrderType';
 import { HomeCardType, HomeChartType } from '../../type/HomeType';
 
 const MenuData: MenuType[] = [
-  { id: 1, title: 'Home', icon: <MeetingRoomIcon fontSize='medium' color='inherit' />, href: '/home' },
+  { id: 1, title: 'Home', icon: <MeetingRoomIcon fontSize='medium' color='inherit' />, href: '/' },
   { id: 2, title: 'Products', icon: <Inventory2Icon fontSize='medium' color='inherit' />, href: '/products' },
   { id: 3, title: 'Comments', icon: <CommentIcon fontSize='medium' color='inherit' />, href: '/comments' },
   { id: 4, title: 'Users', icon: <PeopleAltOutlinedIcon fontSize='medium' color='inherit' />, href: '/users' },

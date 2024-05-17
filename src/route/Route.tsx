@@ -12,7 +12,8 @@ const routes = (isLogin: boolean) => [
     { path: '/users', element: isLogin ? <Users /> : <NotFound /> },
     { path: '/comments', element: isLogin ? <Comments /> : <NotFound /> },
     { path: '/discount-codes', element: isLogin ? <DiscountCodes /> : <NotFound /> },
-    { path: 'orders', element: isLogin ? <Orders /> : <NotFound /> },
+    { path: '/orders', element: isLogin ? <Orders /> : <NotFound /> },
+    { path: '/*', element: <NotFound /> },
 ]
 
 export default routes
