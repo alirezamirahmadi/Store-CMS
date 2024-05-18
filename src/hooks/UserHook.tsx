@@ -4,7 +4,7 @@ import { UserType } from "../type/UserType";
 
 
 const useQueryUser = (phone?: string) => {
-  return useQuery(`userInfo/${phone}`,
+  return useQuery(`user/${phone}`,
     async () => {
       return await apiRequests.get(phone ? `UserData?phone=${phone}` : 'UserData').then(res => res.data);
     }

@@ -5,7 +5,7 @@ type ProductCategoryType = {
 }
 
 type ProductType = {
-  id: string,
+  id?: string,
   category: ProductCategoryType,
   title: string,
   image: string,

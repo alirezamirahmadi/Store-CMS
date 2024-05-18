@@ -58,7 +58,7 @@ export default function Comments(): React.JSX.Element {
     <>
       <div className="mt-8"></div>
       <ReactDataTable rows={CommentData} columns={columns} />
-      {showEditModal && <Modal title='View Comment' children={<CommentModify comment={rowData} />} buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }]} />}
+      {showEditModal && <Modal title='View Comment' children={<CommentModify comment={rowData} />} buttons={[{ id: '1', title: 'Close', variant:'outlined', onClick: closeModal }]} />}
       {showDeleteModal && <Modal title="Delete Comment" message={`Are you sure you want to delete "${rowData?.content}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color: 'error', onClick: deleteComment }]} />}
     </>
   )

@@ -54,7 +54,7 @@ export default function DiscountCodes ():React.JSX.Element {
       <DiscountCodeModify />
       <Divider sx={{ my: '20px', width: '90%', mx: 'auto' }} />
       <ReactDataTable rows={DiscountCodesData} columns={columns} />
-      {showEditModal && <Modal title='Modify Product' children={<DiscountCodeModify discountCode={rowData} />} buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }]} />}
+      {showEditModal && <Modal title='Modify Product' children={<DiscountCodeModify discountCode={rowData} />} buttons={[{ id: '1', title: 'Close', variant:'outlined', onClick: closeModal }]} />}
       {showDeleteModal && <Modal title="Delete Product" message={`Are you sure you want to delete "${rowData?.code}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color:'error', onClick: deleteProduct }]} />}
     </>
   )

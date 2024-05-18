@@ -54,7 +54,7 @@ export default function Users(): React.JSX.Element {
       <UserModify />
       <Divider sx={{ my: '20px', width: '90%', mx: 'auto' }} />
       <ReactDataTable rows={UserData} columns={columns} />
-      {showEditModal && <Modal title='Modify User' children={<UserModify user={rowData} />} buttons={[{ id: '1', title: 'Cancel', onClick: closeModal }]} />}
+      {showEditModal && <Modal title='Modify User' children={<UserModify user={rowData} />} buttons={[{ id: '1', title: 'Close', variant:'outlined', onClick: closeModal }]} />}
       {showDeleteModal && <Modal title="Delete User" message={`Are you sure you want to delete "${rowData?.firstName} ${rowData?.lastName}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color:'error', onClick: deleteUser }]} />}
     </>
   )

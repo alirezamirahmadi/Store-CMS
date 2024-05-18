@@ -60,7 +60,7 @@ export default function Orders(): React.JSX.Element {
     <>
       <div className="mt-8"></div>
       <ReactDataTable rows={OrderData} columns={columns} />
-      {showEditModal && <Modal title='Order Details' children={<OrderDetails order={rowData} />} buttons={[{ id: '1', title: 'Close', onClick: closeModal }]} />}
+      {showEditModal && <Modal title='Order Details' children={<OrderDetails order={rowData} />} buttons={[{ id: '1', title: 'Close', variant:'outlined', onClick: closeModal }]} />}
     </>
   )
 }
