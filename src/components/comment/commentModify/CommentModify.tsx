@@ -1,26 +1,47 @@
-import { TextField, Typography, Button, Avatar, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
+import { useState } from "react";
+import { TextField, Typography, Button, Avatar, FormGroup, FormControlLabel, Checkbox, IconButton } from "@mui/material";
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useForm } from 'react-hook-form';
+import { useCookies } from "react-cookie";
 
 import { CommentType } from "../../../type/CommentType";
+import { useMutationComment } from "../../../hooks/CommentHook";
+import { useQueryUser } from "../../../hooks/UserHook";
+import { getDate, getTime } from "../../../utils/Functions";
+import Modal from "../../modal/Modal";
 
-export default function CommentModify({ comment }: { comment?: CommentType }): React.JSX.Element {
+export default function CommentModify({ comment, closeModal }: { comment?: CommentType, closeModal?: () => void }): React.JSX.Element {
 
-  const { register, handleSubmit, formState: { errors }, resetField, getValues } = useForm({
+  const [cookies, ,] = useCookies(['token']);
+  const { data: userData } = useQueryUser(cookies.token);
+  const { mutate: PutComment } = useMutationComment('PUT');
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<CommentType>();
+  const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm({
     defaultValues: {
       answerContent: '',
-      accepted: comment?.isAccepted
+      accepted: comment?.isAccepted ?? false
     }
   });
 
-  const emptyTextField = () => {
-    resetField('answerContent');
-    resetField('accepted');
+  const submitComment = (data: any) => {
+    comment && PutComment({ ...comment, answer: [...(comment.answer ?? []), { id: comment.answer ? (comment.answer?.length + 1).toString() : '1', creator: userData[0], content: data.answerContent, date: getDate(), time: getTime(), isAccepted: true }], isAccepted: data.accepted })
+    comment && closeModal ? closeModal() : reset();
   }
 
-  const submitComment = (data: any) => {
-    console.log(data);
-    emptyTextField();
+  const closeLocalModal = () => {
+    setShowDeleteModal(false);
+  }
+
+  const handleDeleteAnswer = (answer: CommentType) => {
+    setSelectedAnswer(answer);
+    setShowDeleteModal(true);
+  }
+
+  const deleteAnswer = () => {
+    comment && PutComment({ ...comment, answer: comment.answer?.filter(answer => answer.id !== selectedAnswer?.id) });
+    closeLocalModal();
   }
 
   return (
@@ -39,12 +60,17 @@ export default function CommentModify({ comment }: { comment?: CommentType }): R
             {
               comment?.answer?.map(answer => (
                 <div key={answer.id} className="bg-gray-200 rounded-lg p-4 mt-2">
-                  <div className="flex gap-4 items-center">
-                    <Avatar src={answer?.creator.image} />
-                    <div>
-                      <p className="text-lg">{answer?.creator.firstName} {answer?.creator.lastName}</p>
-                      <p className="text-xs">{answer?.date} {answer?.time}</p>
+                  <div className="flex justify-between">
+                    <div className="flex gap-4 items-center">
+                      <Avatar src={answer?.creator.image} />
+                      <div>
+                        <p className="text-lg">{answer?.creator.firstName} {answer?.creator.lastName}</p>
+                        <p className="text-xs">{answer?.date} {answer?.time}</p>
+                      </div>
                     </div>
+                    <IconButton color="error" onClick={() => handleDeleteAnswer(answer)} title="Delete">
+                      <DeleteIcon />
+                    </IconButton>
                   </div>
                   <p className="text-sm my-4 ms-4">{answer?.content}</p>
                 </div>
@@ -59,6 +85,7 @@ export default function CommentModify({ comment }: { comment?: CommentType }): R
           </FormGroup>
         </div>
         <Button variant="contained" onClick={handleSubmit(submitComment)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
+        {showDeleteModal && <Modal title="Delete Comment" message={`Are you sure you want to delete "${selectedAnswer?.content}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeLocalModal }, { id: '2', title: 'Delete', color: 'error', onClick: deleteAnswer }]} />}
       </form>
     </>
   )

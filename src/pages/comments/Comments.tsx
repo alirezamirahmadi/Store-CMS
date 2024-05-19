@@ -1,16 +1,20 @@
 import { useState } from 'react';
+import { Alert } from '@mui/material';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import ReactDataTable from 'react-datatable-responsive';
 import type { ColumnType } from "react-datatable-responsive";
 
 import Modal from '../../components/modal/Modal';
+import Loading from '../../components/global/loading/Loading';
 import ModifyButtons from '../../components/global/modifyButtons/ModifyButtons';
 import CommentModify from '../../components/comment/commentModify/CommentModify';
 import { CommentType } from '../../type/CommentType';
-import { CommentData } from '../../assets/data/Data';
-import '../../../public/image/users/user-1.png'
+import { useMutationComment, useQueryComment } from '../../hooks/CommentHook';
+
 export default function Comments(): React.JSX.Element {
 
+  const { data: CommentData, isLoading, isFetching, isError } = useQueryComment();
+  const { mutate: DeleteComment } = useMutationComment('DELETE');
   const [rowData, setRowData] = useState<CommentType>();
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
@@ -24,7 +28,7 @@ export default function Comments(): React.JSX.Element {
     { field: { title: 'time' }, label: 'Time' },
     {
       field: { title: 'isAccepted' }, label: 'Accepted', kind: 'component', options: {
-        component: (value, onChange, rowData) => (value ? <DoneAllIcon color='primary'/> : <div></div>)
+        component: (value, onChange, rowData) => (value ? <DoneAllIcon color='primary' /> : <div></div>)
       }
     },
     {
@@ -52,13 +56,23 @@ export default function Comments(): React.JSX.Element {
   }
 
   const deleteComment = () => {
-
+    closeModal();
+    rowData && DeleteComment(rowData);
   }
+  
+  if (isLoading || isFetching) {
+    return (<div className='mt-20'><Loading /></div>)
+  }
+
+  if (isError) {
+    return (<Alert variant="filled" severity="error">Server not available</Alert>)
+  }
+
   return (
     <>
       <div className="mt-8"></div>
       <ReactDataTable rows={CommentData} columns={columns} />
-      {showEditModal && <Modal title='View Comment' children={<CommentModify comment={rowData} />} buttons={[{ id: '1', title: 'Close', variant:'outlined', onClick: closeModal }]} />}
+      {showEditModal && <Modal title='View Comment' children={<CommentModify comment={rowData} closeModal={() => closeModal()} />} buttons={[{ id: '1', title: 'Close', variant: 'outlined', onClick: closeModal }]} />}
       {showDeleteModal && <Modal title="Delete Comment" message={`Are you sure you want to delete "${rowData?.content}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color: 'error', onClick: deleteComment }]} />}
     </>
   )
