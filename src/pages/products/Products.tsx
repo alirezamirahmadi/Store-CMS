@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Divider } from '@mui/material';
+import { Divider, Alert } from '@mui/material';
 import ReactDataTable from 'react-datatable-responsive';
 import type { ColumnType } from "react-datatable-responsive";
 
@@ -8,6 +8,7 @@ import { useMutationProduct, useQueryProduct } from '../../hooks/ProductHook';
 import { ProductType } from '../../type/ProductType';
 import ModifyButtons from '../../components/global/modifyButtons/ModifyButtons';
 import Modal from '../../components/modal/Modal';
+import Loading from '../../components/global/loading/Loading';
 
 export default function Products(): React.JSX.Element {
 
@@ -55,11 +56,11 @@ export default function Products(): React.JSX.Element {
   }
 
   if (isLoading || isFetching) {
-    return (<div>loading ...</div>)
+    return (<div className='mt-20'><Loading /></div>)
   }
 
   if (isError) {
-    return (<div>error</div>)
+    return (<Alert variant="filled" severity="error">Server not available</Alert>)
   }
 
   return (
