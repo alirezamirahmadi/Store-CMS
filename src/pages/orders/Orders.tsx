@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import { IconButton, Typography } from '@mui/material';
+import { Alert, IconButton, Typography } from '@mui/material';
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import ReactDataTable from 'react-datatable-responsive';
 import type { ColumnType } from "react-datatable-responsive";
 
-import { OrderData } from "../../assets/data/Data";
+import { useQueryOrder } from '../../hooks/OrderHook';
 import { OrderType } from '../../type/OrderType';
 import OrderDetails from '../../components/order/orderDetails/OrderDetails';
 import Modal from '../../components/modal/Modal';
+import Loading from '../../components/global/loading/Loading';
 
 export default function Orders(): React.JSX.Element {
 
+  const { data: OrderData, isLoading, isFetching, isError } = useQueryOrder();
   const [rowData, setRowData] = useState<OrderType>();
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
@@ -56,11 +58,19 @@ export default function Orders(): React.JSX.Element {
     setShowEditModal(false);
   }
 
+  if (isLoading || isFetching) {
+    return (<div className='mt-20'><Loading /></div>)
+  }
+  
+  if (isError) {
+    return (<Alert>Server not available</Alert>)
+  }
+
   return (
     <>
       <div className="mt-8"></div>
       <ReactDataTable rows={OrderData} columns={columns} />
-      {showEditModal && <Modal title='Order Details' children={<OrderDetails order={rowData} />} buttons={[{ id: '1', title: 'Close', variant:'outlined', onClick: closeModal }]} />}
+      {showEditModal && <Modal title='Order Details' children={<OrderDetails order={rowData} />} buttons={[{ id: '1', title: 'Close', variant: 'outlined', onClick: closeModal }]} />}
     </>
   )
 }
