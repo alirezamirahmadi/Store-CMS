@@ -1,17 +1,22 @@
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import apiRequests from "../services/axios/AxiosConfig";
 import { UserType } from "../type/UserType";
 
 
 const useQueryUser = (phone?: string) => {
-  return useQuery(`user/${phone}`,
-    async () => {
-      return await apiRequests.get(phone ? `UserData?phone=${phone}` : 'UserData').then(res => res.data);
-    }
+  return phone ? useQuery(`user/${phone}`,
+    async () => apiRequests.get(phone ? `UserData?phone=${phone}` : 'UserData').then(res => res.data)
   )
+    :
+    useQuery('users',
+      async () => await apiRequests.get('UserData').then(res => res.data)
+    )
 }
 
-const useMutationUser = (action: 'POST' | 'PUT' | 'DELETE', userId?: string) => {
+const useMutationUser = (action: 'POST' | 'PUT' | 'DELETE') => {
+
+  const queryClient = useQueryClient();
+
   return useMutation(
     async (body: UserType) => {
       switch (action) {
@@ -22,11 +27,14 @@ const useMutationUser = (action: 'POST' | 'PUT' | 'DELETE', userId?: string) => 
           await apiRequests.put(`UserData/${body.id}`, body)
           break;
         case 'DELETE':
-          await apiRequests.delete(`UserData/${userId}`)
+          await apiRequests.delete(`UserData/${body.id}`)
           break;
         default:
           break;
       }
+    },
+    {
+      onSuccess: () => { queryClient.invalidateQueries('users'); }
     }
   )
 }

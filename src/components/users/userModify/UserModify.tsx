@@ -5,8 +5,12 @@ import { useForm } from 'react-hook-form';
 
 import { UserType } from "../../../type/UserType";
 import regex from "../../../utils/Regex";
+import { useMutationUser } from "../../../hooks/UserHook";
 
-export default function UserModify({ user }: { user?: UserType }): React.JSX.Element {
+export default function UserModify({ user, closeModal }: { user?: UserType, closeModal?:() => void }): React.JSX.Element {
+
+  const {mutate:PostUser} = useMutationUser('POST');
+  const {mutate:PutUser} = useMutationUser('PUT');
   const { register, handleSubmit, reset, formState: { errors }, getValues } = useForm({
     defaultValues: {
       firstName: user?.firstName,
@@ -18,13 +22,15 @@ export default function UserModify({ user }: { user?: UserType }): React.JSX.Ele
       postalCode: user?.postalCode,
       email: user?.email,
       ePhone: user?.ePhone,
-      active: user?.isActive,
+      active: user?.isActive ?? false,
     }
   });
 
   const submitUser = (data: any) => {
-    console.log(data);
-    reset();
+    user ? PutUser({id:user.id, firstName:data.firstName, lastName:data.lastName, province:data.province, city:data.city, address:data.address, phone:data.phone, postalCode:data.postalCode, email:data.email, ePhone:data.ePhone, isActive:data.active  })
+    : PostUser({firstName:data.firstName, lastName:data.lastName, province:data.province, city:data.city, address:data.address, phone:data.phone, postalCode:data.postalCode, email:data.email, ePhone:data.ePhone, isActive:data.active  })
+    
+    closeModal ? closeModal() : reset();
   }
 
   return (

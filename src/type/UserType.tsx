@@ -1,7 +1,7 @@
 
 
 type UserType = {
-  id: string,
+  id?: string,
   firstName: string,
   lastName: string,
   image?: string,

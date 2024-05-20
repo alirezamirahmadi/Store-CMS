@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Divider } from '@mui/material';
+import { Divider, Alert } from '@mui/material';
 import ReactDataTable from 'react-datatable-responsive';
 import type { ColumnType } from "react-datatable-responsive";
 
@@ -7,9 +7,13 @@ import UserModify from "../../components/users/userModify/UserModify";
 import ModifyButtons from '../../components/global/modifyButtons/ModifyButtons';
 import Modal from '../../components/modal/Modal';
 import { UserType } from '../../type/UserType';
-import { UserData } from '../../assets/data/Data';
+import { useQueryUser, useMutationUser } from '../../hooks/UserHook';
+import Loading from '../../components/global/loading/Loading';
 
 export default function Users(): React.JSX.Element {
+
+  const { data: UserData, isLoading, isFetching, isError } = useQueryUser();
+  const { mutate: DeleteUser } = useMutationUser('DELETE');
   const [rowData, setRowData] = useState<UserType>();
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
@@ -46,7 +50,16 @@ export default function Users(): React.JSX.Element {
   }
 
   const deleteUser = () => {
+    closeModal();
+    rowData && DeleteUser(rowData);
+  }
 
+  if (isLoading || isFetching) {
+    return (<div className='mt-20'><Loading /></div>)
+  }
+
+  if (isError) {
+    return (<Alert variant='filled' severity='error'>Server not available</Alert>)
   }
 
   return (
@@ -54,8 +67,8 @@ export default function Users(): React.JSX.Element {
       <UserModify />
       <Divider sx={{ my: '20px', width: '90%', mx: 'auto' }} />
       <ReactDataTable rows={UserData} columns={columns} />
-      {showEditModal && <Modal title='Modify User' children={<UserModify user={rowData} />} buttons={[{ id: '1', title: 'Close', variant:'outlined', onClick: closeModal }]} />}
-      {showDeleteModal && <Modal title="Delete User" message={`Are you sure you want to delete "${rowData?.firstName} ${rowData?.lastName}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color:'error', onClick: deleteUser }]} />}
+      {showEditModal && <Modal title='Modify User' children={<UserModify user={rowData} closeModal={() => closeModal()} />} buttons={[{ id: '1', title: 'Close', variant: 'outlined', onClick: closeModal }]} />}
+      {showDeleteModal && <Modal title="Delete User" message={`Are you sure you want to delete "${rowData?.firstName} ${rowData?.lastName}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color: 'error', onClick: deleteUser }]} />}
     </>
   )
 }
