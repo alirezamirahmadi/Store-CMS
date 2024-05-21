@@ -61,9 +61,9 @@ export default function Orders(): React.JSX.Element {
   if (isLoading || isFetching) {
     return (<div className='mt-20'><Loading /></div>)
   }
-  
+
   if (isError) {
-    return (<Alert>Server not available</Alert>)
+    return (<Alert variant='filled' severity='error'>Server not available</Alert>)
   }
 
   return (

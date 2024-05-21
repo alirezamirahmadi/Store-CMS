@@ -3,22 +3,26 @@ import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutl
 import { useForm } from 'react-hook-form';
 
 import { DiscountCodesType } from "../../../type/DiscountCodesType";
+import { useMutationDiscountCode } from "../../../hooks/DiscountCodeHook";
 
+export default function DiscountCodeModify({ discountCode, closeModal }: { discountCode?: DiscountCodesType, closeModal?: () => void }): React.JSX.Element {
 
-export default function DiscountCodeModify({ discountCode }: { discountCode?: DiscountCodesType }): React.JSX.Element {
-
+  const { mutate: PostDiscountCode } = useMutationDiscountCode('POST');
+  const { mutate: PutDiscountCode } = useMutationDiscountCode('PUT');
   const { register, formState: { errors }, handleSubmit, reset, getValues } = useForm({
     defaultValues: {
       code: discountCode?.code,
       percent: discountCode?.percent,
       maximumuse: discountCode?.maximumuse,
-      active: discountCode?.isActive,
+      active: discountCode?.isActive ?? false,
     }
   });
 
   const submitDiscountCode = (data: any) => {
-    console.log(data);
-    reset();
+    discountCode ? PutDiscountCode({id:discountCode.id, code:data.code, percent:data.percent, maximumuse:data.maximumuse, isActive:data.active, used:discountCode.used })
+    : PostDiscountCode({code:data.code, percent:data.percent, maximumuse:data.maximumuse, isActive:data.active, used:0})
+    
+    closeModal ? closeModal() : reset();
   }
 
   return (

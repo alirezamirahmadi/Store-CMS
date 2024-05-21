@@ -1,7 +1,7 @@
 
 
 type DiscountCodesType = {
-  id: string,
+  id?: string,
   code: string,
   percent: number,
   maximumuse: number,

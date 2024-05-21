@@ -27,7 +27,7 @@ export default function ProductModify({ product, closeModal }: { product?: Produ
       :
       PostProduct({ category: { id: category, title: '' }, title: data.title, image: '', price: data.price, stock: data.stock, isActive: data.active })
 
-    product && closeModal ? closeModal() : reset();
+    closeModal ? closeModal() : reset();
   }
 
   const handleChangeSection = (event: SelectChangeEvent) => {

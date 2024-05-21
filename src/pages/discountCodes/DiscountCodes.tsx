@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Divider } from "@mui/material";
+import { Alert, Divider } from "@mui/material";
 import ReactDataTable from 'react-datatable-responsive';
 import type { ColumnType } from "react-datatable-responsive";
 
@@ -7,10 +7,13 @@ import DiscountCodeModify from "../../components/discountCode/discountCodeModify
 import Modal from "../../components/modal/Modal";
 import ModifyButtons from "../../components/global/modifyButtons/ModifyButtons";
 import type { DiscountCodesType } from "../../type/DiscountCodesType";
-import { DiscountCodesData } from "../../assets/data/Data";
+import { useQueryDiscountCount, useMutationDiscountCode } from "../../hooks/DiscountCodeHook";
+import Loading from "../../components/global/loading/Loading";
 
-export default function DiscountCodes ():React.JSX.Element {
+export default function DiscountCodes(): React.JSX.Element {
 
+  const { data: DiscountCodeData, isLoading, isFetching, isError } = useQueryDiscountCount();
+  const { mutate: DeleteDiscountCode } = useMutationDiscountCode('DELETE');
   const [rowData, setRowData] = useState<DiscountCodesType>();
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
@@ -46,16 +49,25 @@ export default function DiscountCodes ():React.JSX.Element {
   }
 
   const deleteProduct = () => {
-
+    closeModal();
+    rowData && DeleteDiscountCode(rowData);
   }
 
-  return(
+  if (isLoading || isFetching) {
+    return (<div className="mt-20"><Loading /></div>)
+  }
+
+  if (isError) {
+    return (<Alert variant="filled" severity="error">Server not available</Alert>)
+  }
+
+  return (
     <>
       <DiscountCodeModify />
       <Divider sx={{ my: '20px', width: '90%', mx: 'auto' }} />
-      <ReactDataTable rows={DiscountCodesData} columns={columns} />
-      {showEditModal && <Modal title='Modify Product' children={<DiscountCodeModify discountCode={rowData} />} buttons={[{ id: '1', title: 'Close', variant:'outlined', onClick: closeModal }]} />}
-      {showDeleteModal && <Modal title="Delete Product" message={`Are you sure you want to delete "${rowData?.code}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color:'error', onClick: deleteProduct }]} />}
+      <ReactDataTable rows={DiscountCodeData} columns={columns} />
+      {showEditModal && <Modal title='Modify Product' children={<DiscountCodeModify discountCode={rowData} closeModal={() => closeModal()}/>} buttons={[{ id: '1', title: 'Close', variant: 'outlined', onClick: closeModal }]} />}
+      {showDeleteModal && <Modal title="Delete Product" message={`Are you sure you want to delete "${rowData?.code}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeModal }, { id: '2', title: 'Delete', color: 'error', onClick: deleteProduct }]} />}
     </>
   )
 }
