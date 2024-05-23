@@ -49,7 +49,7 @@ export default function ProductModify({ product, closeModal }: { product?: Produ
             }
           </Select>
           <FormGroup>
-            <FormControlLabel control={<Checkbox {...register('active')} checked={getValues('active')} color="primary" />} label="Active" />
+            <FormControlLabel control={<Checkbox defaultChecked={product ? getValues('active') : false} {...register('active')} color="primary" />} label="Active" />
           </FormGroup>
         </div>
         <div className="flex flex-wrap gap-4 items-center justify-center mt-4">

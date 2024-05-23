@@ -33,7 +33,7 @@ export default function DiscountCodeModify({ discountCode, closeModal }: { disco
           <TextField {...register('percent', { required: true })} error={errors.percent ? true : false} required helperText={errors.percent && 'percent is required.'} variant="outlined" label={<Typography variant="body1" sx={{ display: 'inline' }}>Percent</Typography>} />
           <TextField {...register('maximumuse', { required: true })} error={errors.maximumuse ? true : false} required helperText={errors.maximumuse && 'Maximum use is required.'} variant="outlined" label={<Typography variant="body1" sx={{ display: 'inline' }}>Maximumuse</Typography>} />
           <FormGroup>
-            <FormControlLabel control={<Checkbox {...register('active')} checked={getValues('active')} color="primary" />} label="Active" />
+            <FormControlLabel control={<Checkbox {...register('active')}  defaultChecked={discountCode ? getValues('active') : false} color="primary" />} label="Active" />
           </FormGroup>
         </div>
         <div className="flex justify-center mt-4">

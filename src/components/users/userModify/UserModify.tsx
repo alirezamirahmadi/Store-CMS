@@ -47,7 +47,7 @@ export default function UserModify({ user, closeModal }: { user?: UserType, clos
           <TextField {...register('email', { pattern: regex.email })} error={errors.email ? true : false} helperText={errors.email && 'Please enter the correct email.'} variant="outlined" label={<Typography variant="body1">Email</Typography>} />
           <TextField {...register('ePhone', { pattern: regex.phone })} error={errors.ePhone ? true : false} helperText={errors.ePhone && 'Please enter the correct ephone.'} variant="outlined" label={<Typography variant="body1">EPhone</Typography>} />
           <FormGroup>
-            <FormControlLabel control={<Checkbox {...register('active')} checked={getValues('active')} color="primary" />} label="Active" />
+            <FormControlLabel control={<Checkbox {...register('active')}  defaultChecked={user ? getValues('active') : false} color="primary" />} label="Active" />
           </FormGroup>
         </div>
         <div className="flex flex-wrap justify-center mt-4">

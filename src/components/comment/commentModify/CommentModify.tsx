@@ -18,7 +18,7 @@ export default function CommentModify({ comment, closeModal }: { comment?: Comme
   const { mutate: PutComment } = useMutationComment('PUT');
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   const [selectedAnswer, setSelectedAnswer] = useState<CommentType>();
-  const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm({
+  const { register, handleSubmit, reset, getValues } = useForm({
     defaultValues: {
       answerContent: '',
       accepted: comment?.isAccepted ?? false
@@ -79,9 +79,9 @@ export default function CommentModify({ comment, closeModal }: { comment?: Comme
           </div>
         </div>
         <div className="mb-1">
-          <TextField {...register('answerContent', { required: true })} error={errors.answerContent ? true : false} helperText={errors.answerContent && 'Answer is required.'} multiline fullWidth rows={4} variant="outlined" label={<Typography variant="body1">Write your answer ...</Typography>} />
+          <TextField {...register('answerContent')} multiline fullWidth rows={4} variant="outlined" label={<Typography variant="body1">Write your answer ...</Typography>} />
           <FormGroup>
-            <FormControlLabel control={<Checkbox {...register('accepted')} checked={getValues('accepted')} color="primary" />} label="Accept" />
+            <FormControlLabel control={<Checkbox {...register('accepted')}  defaultChecked={comment ? getValues('accepted') : false} color="primary" />} label="Accept" />
           </FormGroup>
         </div>
         <Button variant="contained" onClick={handleSubmit(submitComment)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
