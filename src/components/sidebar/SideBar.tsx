@@ -90,8 +90,7 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
   const navigate = useNavigate();
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  // const [openCollapse, setOpenCollapse] = useState<openCollapseType[]>([]);
-  const [listSelected, setListSelected] = useState<string>('');
+  const [menuItemSelected, setMenuItemSelected] = useState<string>('');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -101,27 +100,13 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
     setOpen(false);
   }
 
-  const selectCategory = (href: string) => {
-    setListSelected(href);
+  const handleNavigate = (href: string) => {
+    setMenuItemSelected(href);
     navigate(href);
   }
 
-  // const handleOpenCollapse = (id: number) => {
-  //   let collapse = openCollapse?.find(col => col.id === id);
-  //   let tempArray = openCollapse?.filter(col => col.id != id);
-  //   collapse && setOpenCollapse([...tempArray, { id, open: !collapse.open }])
-  // }
-
-  // useEffect(() => {
-  //   let tempArray: openCollapseType[] = [];
-  //   MenuData?.map(menuItem => {
-  //     menuItem && tempArray.push({ id: menuItem.id, open: false })
-  //   })
-  //   setOpenCollapse([...tempArray]);
-  // }, [])
-
   useEffect(() => {
-    setListSelected(location.pathname);
+    setMenuItemSelected(location.pathname);
   }, [])
 
   return (
@@ -129,15 +114,16 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
       <CssBaseline />
       <AppBar position="fixed" open={open} >
         <Toolbar sx={{ display: 'flex' }}>
-          <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
-            sx={{ ...(open && { display: 'none' }), }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <div className="hidden lg:block">
+            <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
+              sx={{ ...(open && { display: 'none' }), }} >
+              <MenuIcon />
+            </IconButton>
+          </div>
           <NavBar />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} >
+      <Drawer variant="permanent" open={open} className='lg:block hidden'>
         <DrawerHeader >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -152,8 +138,8 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
             MenuData?.map(menuItem => (
               <ListItem key={menuItem.id} disablePadding sx={{ display: 'block', mb: 2.5 }}>
                 <Tooltip title={open ? '' : menuItem.title}>
-                  <ListItemButton onClick={() => selectCategory(menuItem.href)} sx={{ height: 30, justifyContent: open ? 'initial' : 'center', px: 2.5, mb: 1, color: listSelected === menuItem.href ? theme.palette.primary.main : '' }}>
-                    <ListItemIcon sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color: listSelected === menuItem.href ? theme.palette.primary.main : '' }} >
+                  <ListItemButton onClick={() => handleNavigate(menuItem.href)} sx={{ height: 30, justifyContent: open ? 'initial' : 'center', px: 2.5, mb: 1, color: menuItemSelected === menuItem.href ? theme.palette.primary.main : '' }}>
+                    <ListItemIcon sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color: menuItemSelected === menuItem.href ? theme.palette.primary.main : '' }} >
                       {menuItem.icon}
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} primary={<Typography variant='body1' >{menuItem.title}</Typography>} />
