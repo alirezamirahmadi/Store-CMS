@@ -6,13 +6,13 @@ import DiscountCodes from "../pages/discountCodes/DiscountCodes";
 import Orders from "../pages/orders/Orders";
 import NotFound from "../pages/notFound/NotFound";
 
-const routes = (isLogin: boolean) => [
-    { path: '/', element: isLogin ? <Home /> : <NotFound /> },
-    { path: '/products', element: isLogin ? <Products /> : <NotFound /> },
-    { path: '/users', element: isLogin ? <Users /> : <NotFound /> },
-    { path: '/comments', element: isLogin ? <Comments /> : <NotFound /> },
-    { path: '/discount-codes', element: isLogin ? <DiscountCodes /> : <NotFound /> },
-    { path: '/orders', element: isLogin ? <Orders /> : <NotFound /> },
+const routes = (isLogin: boolean, permissions: string[]) => [
+    { path: '/', element: (isLogin && permissions.includes('/')) ? <Home /> : <NotFound /> },
+    { path: '/products', element: (isLogin && permissions.includes('/products')) ? <Products /> : <NotFound /> },
+    { path: '/users', element: (isLogin && permissions.includes('/users')) ? <Users /> : <NotFound /> },
+    { path: '/comments', element: (isLogin && permissions.includes('/comments')) ? <Comments /> : <NotFound /> },
+    { path: '/discount-codes', element: (isLogin && permissions.includes('/discount-codes')) ? <DiscountCodes /> : <NotFound /> },
+    { path: '/orders', element: (isLogin && permissions.includes('/orders')) ? <Orders /> : <NotFound /> },
     { path: '/*', element: <NotFound /> },
 ]
 

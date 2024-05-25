@@ -13,7 +13,8 @@ type UserType = {
   email?: string,
   ePhone?: string,
   description?: string,
-  isActive:boolean,
+  isActive: boolean,
+  permissions?: string[],
 }
 
 export type {

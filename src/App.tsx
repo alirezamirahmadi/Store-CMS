@@ -17,7 +17,7 @@ function App() {
   const dispatch = useDispatch<AppDispatch>();
   const loginInfo = useSelector((state: RootState) => state.login);
   const [cookies, ,] = useCookies(['token']);
-  const router = useRoutes(routes(loginInfo.isLogin));
+  const router = useRoutes(routes(loginInfo.isLogin, loginInfo.userInfo?.permissions ?? []));
 
   useEffect(() => {
     dispatch(getLogin(cookies.token)).then(() => setIsLoading(false));

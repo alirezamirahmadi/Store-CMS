@@ -10,7 +10,9 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { useSelector } from 'react-redux';
 
+import { RootState } from '../../redux/store/Store';
 import { MenuData } from '../../assets/data/Data';
 import NavBar from '../navbar/NavBar';
 
@@ -91,6 +93,7 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [menuItemSelected, setMenuItemSelected] = useState<string>('');
+  const loginInfo = useSelector((state: RootState) => state.login);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -136,6 +139,7 @@ export default function SideBar({ children }: { children: React.ReactNode }): Re
           aria-labelledby="category-menu">
           {
             MenuData?.map(menuItem => (
+              loginInfo.userInfo?.permissions.includes(menuItem.href) &&
               <ListItem key={menuItem.id} disablePadding sx={{ display: 'block', mb: 2.5 }}>
                 <Tooltip title={open ? '' : menuItem.title}>
                   <ListItemButton onClick={() => handleNavigate(menuItem.href)} sx={{ height: 30, justifyContent: open ? 'initial' : 'center', px: 2.5, mb: 1, color: menuItemSelected === menuItem.href ? theme.palette.primary.main : '' }}>

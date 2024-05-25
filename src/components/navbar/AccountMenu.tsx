@@ -48,6 +48,7 @@ export default function AccountMenu(): React.JSX.Element {
   useEffect(() => {
     setMenuItemSelected(location.pathname);
   }, [])
+  
 
   return (
     <>
@@ -58,7 +59,7 @@ export default function AccountMenu(): React.JSX.Element {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32, bgcolor: theme.palette.primary.main }}></Avatar>
+            <Avatar src={loginInfo.userInfo?.image} sx={{ width: 36, height: 36, bgcolor: theme.palette.primary.main }} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -71,15 +72,16 @@ export default function AccountMenu(): React.JSX.Element {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+        <MenuItem sx={{cursor:'default'}}>
           <ListItemIcon>
-            <PersonIcon fontSize="small" />
-            <Typography variant='body2' sx={{ marginX: '4px' }}>{loginInfo.userInfo?.firstName} {loginInfo.userInfo?.lastName}</Typography>
+            <PersonIcon fontSize="small" color='info'/>
+            <Typography variant='body2' sx={{ marginX: '4px' }} color={theme.palette.info.main}>{loginInfo.userInfo?.firstName} {loginInfo.userInfo?.lastName}</Typography>
           </ListItemIcon>
         </MenuItem>
         <Divider />
         {
           MenuData?.map(menuItem => (
+            loginInfo.userInfo?.permissions.includes(menuItem.href) &&
             <div key={menuItem.id} className='block lg:hidden'>
               <MenuItem onClick={() => handleNavigate(menuItem.href)}>
                 <ListItemIcon sx={{color:menuItemSelected === menuItem.href ? theme.palette.primary.main : ''}}>
