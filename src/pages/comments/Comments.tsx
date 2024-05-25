@@ -21,14 +21,17 @@ export default function Comments(): React.JSX.Element {
 
   const columns: ColumnType[] = [
     { field: { title: 'id' }, label: 'ID', options: { display: false } },
-    { field: { title: 'creator.firstname' }, label: 'Fisrt Name' },
-    { field: { title: 'creator.lastname' }, label: 'Last Name' },
+    {
+      field: { title: 'creator' }, label: 'Name', kind: 'component', options: {
+        component: (value) => (<span>{value.firstName} {value.lastName}</span>)
+      }
+    },
     { field: { title: 'content' }, label: 'Content' },
     { field: { title: 'date' }, label: 'Date' },
     { field: { title: 'time' }, label: 'Time' },
     {
       field: { title: 'isAccepted' }, label: 'Accepted', kind: 'component', options: {
-        component: (value, onChange, rowData) => (value ? <DoneAllIcon color='primary' /> : <div></div>)
+        component: (value) => (value ? <DoneAllIcon color='primary' /> : <div></div>)
       }
     },
     {
@@ -59,7 +62,7 @@ export default function Comments(): React.JSX.Element {
     closeModal();
     rowData && DeleteComment(rowData);
   }
-  
+
   if (isLoading || isFetching) {
     return (<div className='mt-20'><Loading /></div>)
   }
