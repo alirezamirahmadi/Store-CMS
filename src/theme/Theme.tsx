@@ -45,10 +45,15 @@ export default function Theme() {
         mode,
 
         primary: {
-          main: '#00A693', //'#48d1cc', //'#8BB867',
-          light: '#66dfd1', //'#8ed557',
+          main: '#00A693', 
+          light: '#57C5C6',
           contrastText: '#fff',
         },
+        
+        secondary:{
+          main:'#D99058',
+          contrastText: '#fff',
+        }
       },
       typography: {
         fontFamily: ['sahel, arial'].join(","),

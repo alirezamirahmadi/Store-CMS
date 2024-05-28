@@ -74,14 +74,14 @@ export default function AccountMenu(): React.JSX.Element {
       >
         <MenuItem sx={{cursor:'default'}}>
           <ListItemIcon>
-            <PersonIcon fontSize="small" color='info'/>
-            <Typography variant='body2' sx={{ marginX: '4px' }} color={theme.palette.info.main}>{loginInfo.userInfo?.firstName} {loginInfo.userInfo?.lastName}</Typography>
+            <PersonIcon fontSize="small" color='secondary'/>
+            <Typography variant='body2' sx={{ marginX: '4px' }} color={theme.palette.secondary.main}>{loginInfo.userInfo?.firstName} {loginInfo.userInfo?.lastName}</Typography>
           </ListItemIcon>
         </MenuItem>
         <Divider />
         {
           MenuData?.map(menuItem => (
-            loginInfo.userInfo?.permissions.includes(menuItem.href) &&
+            loginInfo.userInfo?.permissions?.includes(menuItem.href) &&
             <div key={menuItem.id} className='block lg:hidden'>
               <MenuItem onClick={() => handleNavigate(menuItem.href)}>
                 <ListItemIcon sx={{color:menuItemSelected === menuItem.href ? theme.palette.primary.main : ''}}>

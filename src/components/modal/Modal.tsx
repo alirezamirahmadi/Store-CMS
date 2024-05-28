@@ -7,7 +7,7 @@ export default function Modal({ title, message, buttons, children }: ModalType) 
 
   return createPortal(
     <>
-      <div className="flex fixed z-50 w-full h-screen top-0 bg-black/60">
+      <div className="flex fixed z-50 w-full h-screen top-0 bg-black/60 pt-16">
         <div className="bg-white mx-auto my-auto rounded-lg p-5">
           <p className="my-2 text-2xl font-bold">{title}</p>
           <hr />

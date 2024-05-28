@@ -57,7 +57,7 @@ export default function ProductModify({ product, closeModal }: { product?: Produ
             Upload File
             <input type="file" hidden />
           </Button>
-          <Button variant="contained" onClick={handleSubmit(submitProduct)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
+          <Button variant="contained" color="secondary" onClick={handleSubmit(submitProduct)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
         </div>
       </div>
     </>

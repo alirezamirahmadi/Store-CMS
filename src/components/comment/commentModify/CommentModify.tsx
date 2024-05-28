@@ -46,7 +46,7 @@ export default function CommentModify({ comment, closeModal }: { comment?: Comme
 
   return (
     <>
-      <form className="mt-4 max-w-screen-sm">
+      <form className="mt-4 max-w-screen-sm max-h-screen">
         <div className="bg-gray-100 rounded-lg">
           <div className="p-4 mb-4">
             <div className="flex gap-4 items-center">
@@ -84,7 +84,7 @@ export default function CommentModify({ comment, closeModal }: { comment?: Comme
             <FormControlLabel control={<Checkbox {...register('accepted')}  defaultChecked={comment ? getValues('accepted') : false} color="primary" />} label="Accept" />
           </FormGroup>
         </div>
-        <Button variant="contained" onClick={handleSubmit(submitComment)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
+        <Button variant="contained" color="secondary" onClick={handleSubmit(submitComment)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
         {showDeleteModal && <Modal title="Delete Comment" message={`Are you sure you want to delete "${selectedAnswer?.content}" ?`} buttons={[{ id: '1', title: 'Cancel', variant: 'outlined', onClick: closeLocalModal }, { id: '2', title: 'Delete', color: 'error', onClick: deleteAnswer }]} />}
       </form>
     </>

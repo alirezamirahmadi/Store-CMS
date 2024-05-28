@@ -37,7 +37,7 @@ export default function DiscountCodeModify({ discountCode, closeModal }: { disco
           </FormGroup>
         </div>
         <div className="flex justify-center mt-4">
-          <Button variant="contained" onClick={handleSubmit(submitDiscountCode)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
+          <Button variant="contained" color="secondary" onClick={handleSubmit(submitDiscountCode)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
         </div>
       </form>
     </>

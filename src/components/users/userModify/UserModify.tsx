@@ -51,7 +51,7 @@ export default function UserModify({ user, closeModal }: { user?: UserType, clos
           </FormGroup>
         </div>
         <div className="flex flex-wrap justify-center mt-4">
-          <Button variant="contained" onClick={handleSubmit(submitUser)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
+          <Button variant="contained" color="secondary" onClick={handleSubmit(submitUser)} startIcon={<KeyboardArrowUpOutlinedIcon />}>Submit</Button>
         </div>
       </form>
     </>

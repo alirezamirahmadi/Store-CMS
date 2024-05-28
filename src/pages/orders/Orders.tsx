@@ -48,7 +48,7 @@ export default function Orders(): React.JSX.Element {
             setShowEditModal(true);
             setRowData(rowData);
           }
-          return <IconButton onClick={showDatils}><ViewInArIcon color='primary' /></IconButton>
+          return <IconButton onClick={showDatils}><ViewInArIcon color='secondary' /></IconButton>
         }
       }
     },

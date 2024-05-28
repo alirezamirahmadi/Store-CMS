@@ -11,7 +11,7 @@ export default function HomeCard({ title, value, icon, changeRate, description }
 
   return (
     <>
-      <Box sx={{ bgcolor: theme.palette.primary.light, p: '16px', textAlign: 'center', borderRadius: '10px', minWidth: '250px', maxWidth: '450px', boxShadow: '', display:'flex', alignItems:'center' }}>
+      <Box sx={{ bgcolor: theme.palette.primary.main, color:theme.palette.secondary.contrastText, p: '16px', textAlign: 'center', borderRadius: '10px', minWidth: '250px', maxWidth: '450px', boxShadow: '', display:'flex', alignItems:'center' }}>
         <img src={icon} alt={title} className='w-20 h-20 me-8'/>
         <div>
           <Typography variant='h5' sx={{ fontWeight: '600' }}>{title}</Typography>
@@ -19,7 +19,7 @@ export default function HomeCard({ title, value, icon, changeRate, description }
             <Typography variant='h6' sx={{ fontWeight: '600' }}>{value} $</Typography>
             <Typography variant='body1' sx={{ fontWeight: '600', display: 'flex', alignItems: 'center' }}>
               {changeRate}
-              {changeRate > 0 ? <NorthOutlinedIcon color='success' /> : <SouthOutlinedIcon color='error' />}
+              {changeRate > 0 ? <NorthOutlinedIcon /> : <SouthOutlinedIcon />}
             </Typography>
           </div>
           <Typography variant='body1'>
